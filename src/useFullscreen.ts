@@ -1,7 +1,7 @@
-import { RefObject, useState } from 'react';
-import screenfull from 'screenfull';
-import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
-import { noop, off, on } from './misc/util';
+import { RefObject, useState } from "react";
+import screenfull from "screenfull";
+import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
+import { noop, off, on } from "./misc/util";
 
 export interface FullScreenOptions {
   video?: RefObject<
@@ -28,7 +28,7 @@ const useFullscreen = (
 
     const onWebkitEndFullscreen = () => {
       if (video?.current) {
-        off(video.current, 'webkitendfullscreen', onWebkitEndFullscreen);
+        off(video.current, "webkitendfullscreen", onWebkitEndFullscreen);
       }
       onClose();
     };
@@ -51,10 +51,10 @@ const useFullscreen = (
         onClose(error);
         setIsFullscreen(false);
       }
-      screenfull.on('change', onChange);
+      screenfull.on("change", onChange);
     } else if (video && video.current && video.current.webkitEnterFullscreen) {
       video.current.webkitEnterFullscreen();
-      on(video.current, 'webkitendfullscreen', onWebkitEndFullscreen);
+      on(video.current, "webkitendfullscreen", onWebkitEndFullscreen);
       setIsFullscreen(true);
     } else {
       onClose();
@@ -65,11 +65,11 @@ const useFullscreen = (
       setIsFullscreen(false);
       if (screenfull.isEnabled) {
         try {
-          screenfull.off('change', onChange);
+          screenfull.off("change", onChange);
           screenfull.exit();
         } catch {}
       } else if (video && video.current && video.current.webkitExitFullscreen) {
-        off(video.current, 'webkitendfullscreen', onWebkitEndFullscreen);
+        off(video.current, "webkitendfullscreen", onWebkitEndFullscreen);
         video.current.webkitExitFullscreen();
       }
     };

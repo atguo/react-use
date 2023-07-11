@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
-import { render, act as reactAct } from '@testing-library/react';
-import { act, renderHook } from '@testing-library/react-hooks';
-import { replaceRaf } from 'raf-stub';
+import React, { useEffect } from "react";
+import { render, act as reactAct } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react-hooks";
+import { replaceRaf } from "raf-stub";
 
-import useWindowScroll from '../src/useWindowScroll';
+import useWindowScroll from "../src/useWindowScroll";
 
 declare var requestAnimationFrame: {
   reset: () => void;
   step: (steps?: number, duration?: number) => void;
 };
 
-describe('useWindowScroll', () => {
+describe("useWindowScroll", () => {
   beforeAll(() => {
     replaceRaf();
   });
@@ -19,7 +19,7 @@ describe('useWindowScroll', () => {
     requestAnimationFrame.reset();
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(useWindowScroll).toBeDefined();
   });
 
@@ -34,17 +34,17 @@ describe('useWindowScroll', () => {
     (window.pageYOffset as number) = y;
   }
 
-  function triggerScroll(dimension: 'x' | 'y', value: number) {
-    if (dimension === 'x') {
+  function triggerScroll(dimension: "x" | "y", value: number) {
+    if (dimension === "x") {
       (window.pageXOffset as number) = value;
-    } else if (dimension === 'y') {
+    } else if (dimension === "y") {
       (window.pageYOffset as number) = value;
     }
 
-    window.dispatchEvent(new Event('scroll'));
+    window.dispatchEvent(new Event("scroll"));
   }
 
-  it('should return window scroll value at mount time', () => {
+  it("should return window scroll value at mount time", () => {
     setWindowScroll(1, 2);
 
     const hook = getHook();
@@ -55,12 +55,12 @@ describe('useWindowScroll', () => {
     });
   });
 
-  it('should re-render after X scroll change on closest RAF', () => {
+  it("should re-render after X scroll change on closest RAF", () => {
     setWindowScroll(1, 2);
     const hook = getHook();
 
     act(() => {
-      triggerScroll('x', 100);
+      triggerScroll("x", 100);
       expect(hook.result.current.x).toBe(1);
 
       requestAnimationFrame.step();
@@ -69,7 +69,7 @@ describe('useWindowScroll', () => {
     expect(hook.result.current.x).toBe(100);
 
     act(() => {
-      triggerScroll('x', 1000);
+      triggerScroll("x", 1000);
       expect(hook.result.current.x).toBe(100);
       requestAnimationFrame.step();
     });
@@ -77,12 +77,12 @@ describe('useWindowScroll', () => {
     expect(hook.result.current.x).toBe(1000);
   });
 
-  it('should re-render after Y scroll change on closest RAF', () => {
+  it("should re-render after Y scroll change on closest RAF", () => {
     setWindowScroll(1, 2);
     const hook = getHook();
 
     act(() => {
-      triggerScroll('y', 200);
+      triggerScroll("y", 200);
       expect(hook.result.current.y).toBe(2);
       requestAnimationFrame.step();
     });
@@ -90,7 +90,7 @@ describe('useWindowScroll', () => {
     expect(hook.result.current.y).toBe(200);
 
     act(() => {
-      triggerScroll('y', 300);
+      triggerScroll("y", 300);
       expect(hook.result.current.y).toBe(200);
       requestAnimationFrame.step();
     });
@@ -98,7 +98,7 @@ describe('useWindowScroll', () => {
     expect(hook.result.current.y).toBe(300);
   });
 
-  it('should set window scroll in mount effect, just before subscription, to prevent losing scroll change between render and mount', () => {
+  it("should set window scroll in mount effect, just before subscription, to prevent losing scroll change between render and mount", () => {
     const initialScroll = { x: 1, y: 2 };
     const afterRenderScroll = { x: 2, y: 3 };
     const result = {

@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useList } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useList } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [
@@ -51,14 +51,14 @@ interface UpsertDemoType {
 
 const upsertPredicate = (a: UpsertDemoType, b: UpsertDemoType) => a.id === b.id;
 const upsertInitialItems: UpsertDemoType[] = [
-  { id: '1', text: 'Sample' },
-  { id: '2', text: 'Example' },
+  { id: "1", text: "Sample" },
+  { id: "2", text: "Example" },
 ];
 const UpsertDemo = () => {
   const [list, { upsert, reset, removeAt }] = useList(upsertInitialItems);
 
   return (
-    <div style={{ display: 'inline-flex', flexDirection: 'column' }}>
+    <div style={{ display: "inline-flex", flexDirection: "column" }}>
       {list.map((item, index) => (
         <div key={item.id}>
           <input
@@ -69,7 +69,7 @@ const UpsertDemo = () => {
         </div>
       ))}
       <button
-        onClick={() => upsert(upsertPredicate, { id: (list.length + 1).toString(), text: '' })}>
+        onClick={() => upsert(upsertPredicate, { id: (list.length + 1).toString(), text: "" })}>
         Add item
       </button>
       <button onClick={() => reset()}>Reset</button>
@@ -77,7 +77,7 @@ const UpsertDemo = () => {
   );
 };
 
-storiesOf('State/useList', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useList.md')} />)
-  .add('Demo', () => <Demo />)
-  .add('Upsert Demo', () => <UpsertDemo />);
+storiesOf("State/useList", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useList.md")} />)
+  .add("Demo", () => <Demo />)
+  .add("Upsert Demo", () => <UpsertDemo />);

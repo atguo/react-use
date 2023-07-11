@@ -1,6 +1,6 @@
-import { useMemo, useRef } from 'react';
-import useUpdate from './useUpdate';
-import { IHookStateInitAction, IHookStateSetAction, resolveHookState } from './misc/hookState';
+import { useMemo, useRef } from "react";
+import useUpdate from "./useUpdate";
+import { IHookStateInitAction, IHookStateSetAction, resolveHookState } from "./misc/hookState";
 
 export interface ListActions<T> {
   /**

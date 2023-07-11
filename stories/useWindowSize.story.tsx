@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useWindowSize } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useWindowSize } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const { width, height } = useWindowSize();
@@ -14,6 +14,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Sensors/useWindowSize', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useWindowSize.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Sensors/useWindowSize", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useWindowSize.md")} />)
+  .add("Demo", () => <Demo />);

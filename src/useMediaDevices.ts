@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { isNavigator, noop, off, on } from './misc/util';
+import { useEffect, useState } from "react";
+import { isNavigator, noop, off, on } from "./misc/util";
 
 const useMediaDevices = () => {
   const [state, setState] = useState({});
@@ -25,12 +25,12 @@ const useMediaDevices = () => {
         .catch(noop);
     };
 
-    on(navigator.mediaDevices, 'devicechange', onChange);
+    on(navigator.mediaDevices, "devicechange", onChange);
     onChange();
 
     return () => {
       mounted = false;
-      off(navigator.mediaDevices, 'devicechange', onChange);
+      off(navigator.mediaDevices, "devicechange", onChange);
     };
   }, []);
 

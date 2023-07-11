@@ -1,27 +1,27 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useDrop } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useDrop } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const state = useDrop({
-    onFiles: (...args) => console.log('onFiles', ...args),
-    onUri: (...args) => console.log('onUri', ...args),
-    onText: (...args) => console.log('onText', ...args),
+    onFiles: (...args) => console.log("onFiles", ...args),
+    onUri: (...args) => console.log("onUri", ...args),
+    onText: (...args) => console.log("onText", ...args),
   });
 
   const style: React.CSSProperties = {
     width: 300,
     height: 200,
-    margin: '50px auto',
-    border: '1px dotted #000',
-    textAlign: 'center',
-    lineHeight: '200px',
+    margin: "50px auto",
+    border: "1px dotted #000",
+    textAlign: "center",
+    lineHeight: "200px",
     ...(state.over
       ? {
-          border: '1px dotted green',
-          outline: '3px solid yellow',
-          background: '#f8f8f8',
+          border: "1px dotted green",
+          outline: "3px solid yellow",
+          background: "#f8f8f8",
         }
       : {}),
   };
@@ -29,8 +29,8 @@ const Demo = () => {
   return (
     <div>
       <div style={style}>Drop anywhere on page</div>
-      <div style={{ maxWidth: 300, margin: '0 auto' }}>
-        <ul style={{ margin: 0, padding: '10px 18px' }}>
+      <div style={{ maxWidth: 300, margin: "0 auto" }}>
+        <ul style={{ margin: 0, padding: "10px 18px" }}>
           <li>
             See logs in <code>Actions</code> tab.
           </li>
@@ -48,6 +48,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('UI/useDrop', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useDrop.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("UI/useDrop", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useDrop.md")} />)
+  .add("Demo", () => <Demo />);

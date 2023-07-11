@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { isBrowser, off, on } from './misc/util';
+import { useEffect, useState } from "react";
+import { isBrowser, off, on } from "./misc/util";
 
 const getValue = (search: string, param: string) => new URLSearchParams(search).get(param);
 
@@ -14,14 +14,14 @@ const useSearchParam: UseQueryParam = (param) => {
       setValue(getValue(location.search, param));
     };
 
-    on(window, 'popstate', onChange);
-    on(window, 'pushstate', onChange);
-    on(window, 'replacestate', onChange);
+    on(window, "popstate", onChange);
+    on(window, "pushstate", onChange);
+    on(window, "replacestate", onChange);
 
     return () => {
-      off(window, 'popstate', onChange);
-      off(window, 'pushstate', onChange);
-      off(window, 'replacestate', onChange);
+      off(window, "popstate", onChange);
+      off(window, "pushstate", onChange);
+      off(window, "replacestate", onChange);
     };
   }, []);
 

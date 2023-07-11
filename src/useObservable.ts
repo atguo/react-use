@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
+import { useState } from "react";
+import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
 
 export interface Observable<T> {
   subscribe: (listener: (value: T) => void) => {

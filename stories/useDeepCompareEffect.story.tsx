@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useCounter, useDeepCompareEffect } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useCounter, useDeepCompareEffect } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [countNormal, { inc: incNormal }] = useCounter(0);
@@ -28,6 +28,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Lifecycle/useDeepCompareEffect', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useDeepCompareEffect.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Lifecycle/useDeepCompareEffect", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useDeepCompareEffect.md")} />)
+  .add("Demo", () => <Demo />);

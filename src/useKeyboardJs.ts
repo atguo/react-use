@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import useMount from './useMount';
+import { useEffect, useState } from "react";
+import useMount from "./useMount";
 
 const useKeyboardJs = (combination: string | string[]) => {
   const [state, set] = useState<[boolean, null | KeyboardEvent]>([false, null]);
   const [keyboardJs, setKeyboardJs] = useState<any>(null);
 
   useMount(() => {
-    import('keyboardjs').then((k) => setKeyboardJs(k.default || k));
+    import("keyboardjs").then((k) => setKeyboardJs(k.default || k));
   });
 
   useEffect(() => {

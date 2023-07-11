@@ -1,13 +1,13 @@
-import React, { useRef } from 'react';
-import ReactDOM from 'react-dom';
-import { renderHook } from '@testing-library/react-hooks';
-import TestUtils from 'react-dom/test-utils';
-import { ensuredForwardRef, useEnsuredForwardedRef } from '../src';
+import React, { useRef } from "react";
+import ReactDOM from "react-dom";
+import { renderHook } from "@testing-library/react-hooks";
+import TestUtils from "react-dom/test-utils";
+import { ensuredForwardRef, useEnsuredForwardedRef } from "../src";
 
 let container: HTMLDivElement;
 
 beforeEach(() => {
-  container = document.createElement('div');
+  container = document.createElement("div");
   document.body.appendChild(container);
 });
 
@@ -16,7 +16,7 @@ afterEach(() => {
   container = null!;
 });
 
-test('should return a valid ref with existing forwardedRef', () => {
+test("should return a valid ref with existing forwardedRef", () => {
   const { result } = renderHook(() => {
     const ref = useRef(null);
     const ensuredRef = useEnsuredForwardedRef(ref);
@@ -36,7 +36,7 @@ test('should return a valid ref with existing forwardedRef', () => {
   expect(ensuredForwardedRef).toStrictEqual(initialRef);
 });
 
-test('should return a valid ref when the forwarded ref is undefined', () => {
+test("should return a valid ref when the forwarded ref is undefined", () => {
   const { result } = renderHook(() => {
     const ref = useEnsuredForwardedRef<HTMLDivElement>(undefined!);
 
@@ -49,10 +49,10 @@ test('should return a valid ref when the forwarded ref is undefined', () => {
 
   const { ensuredRef } = result.current;
 
-  expect(ensuredRef.current.id).toBe('test_id');
+  expect(ensuredRef.current.id).toBe("test_id");
 });
 
-test('should return a valid ref when using the wrapper function style', () => {
+test("should return a valid ref when using the wrapper function style", () => {
   const { result } = renderHook(() => {
     const initialRef = useRef<HTMLDivElement | null>(null);
 
@@ -70,5 +70,5 @@ test('should return a valid ref when using the wrapper function style', () => {
   const { initialRef } = result.current;
 
   expect(initialRef.current).toBeTruthy();
-  expect(initialRef.current?.id).toBe('test_id');
+  expect(initialRef.current?.id).toBe("test_id");
 });

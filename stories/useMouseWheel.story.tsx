@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useMouseWheel } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useMouseWheel } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const mouseWheel = useMouseWheel();
@@ -12,6 +12,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Sensors/useMouseWheel', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useMouseWheel.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Sensors/useMouseWheel", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useMouseWheel.md")} />)
+  .add("Demo", () => <Demo />);

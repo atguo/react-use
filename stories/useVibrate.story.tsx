@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useVibrate, useToggle } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useVibrate, useToggle } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [vibrating, toggleVibrating] = useToggle(false);
@@ -10,11 +10,11 @@ const Demo = () => {
 
   return (
     <div>
-      <button onClick={toggleVibrating}>{vibrating ? 'Stop' : 'Vibrate'}</button>
+      <button onClick={toggleVibrating}>{vibrating ? "Stop" : "Vibrate"}</button>
     </div>
   );
 };
 
-storiesOf('UI/useVibrate', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useVibrate.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("UI/useVibrate", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useVibrate.md")} />)
+  .add("Demo", () => <Demo />);

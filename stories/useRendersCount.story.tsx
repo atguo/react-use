@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useRendersCount } from '../src/useRendersCount';
-import useUpdate from '../src/useUpdate';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useRendersCount } from "../src/useRendersCount";
+import useUpdate from "../src/useUpdate";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const update = useUpdate();
@@ -17,6 +17,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('State/useRendersCount', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useRendersCount.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/useRendersCount", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useRendersCount.md")} />)
+  .add("Demo", () => <Demo />);

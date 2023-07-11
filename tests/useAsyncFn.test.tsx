@@ -5,17 +5,17 @@
 // does not automatically invoke the function
 // and it can take arguments.
 
-import { act, renderHook } from '@testing-library/react-hooks';
-import useAsyncFn, { AsyncState } from '../src/useAsyncFn';
+import { act, renderHook } from "@testing-library/react-hooks";
+import useAsyncFn, { AsyncState } from "../src/useAsyncFn";
 
 type AdderFn = (a?: number, b?: number) => Promise<number>;
 
-describe('useAsyncFn', () => {
-  it('should be defined', () => {
+describe("useAsyncFn", () => {
+  it("should be defined", () => {
     expect(useAsyncFn).toBeDefined();
   });
 
-  describe('the callback can be awaited and return the value', () => {
+  describe("the callback can be awaited and return the value", () => {
     let hook;
     const adder: AdderFn = async (a?: number, b?: number): Promise<number> => {
       return (a || 0) + (b || 0);
@@ -31,7 +31,7 @@ describe('useAsyncFn', () => {
       );
     });
 
-    it('awaits the result', async () => {
+    it("awaits the result", async () => {
       expect.assertions(3);
 
       const [, callback] = hook.result.current;
@@ -50,7 +50,7 @@ describe('useAsyncFn', () => {
     });
   });
 
-  describe('args can be passed to the function', () => {
+  describe("args can be passed to the function", () => {
     let hook;
     let callCount = 0;
     const adder = async (a?: number, b?: number): Promise<number> => {
@@ -70,7 +70,7 @@ describe('useAsyncFn', () => {
       );
     });
 
-    it('initially does not have a value', () => {
+    it("initially does not have a value", () => {
       const [state] = hook.result.current;
 
       expect(state.value).toEqual(undefined);
@@ -79,8 +79,8 @@ describe('useAsyncFn', () => {
       expect(callCount).toEqual(0);
     });
 
-    describe('when invoked', () => {
-      it('resolves a value derived from args', async () => {
+    describe("when invoked", () => {
+      it("resolves a value derived from args", async () => {
         expect.assertions(4);
 
         const [, callback] = hook.result.current;
@@ -101,7 +101,7 @@ describe('useAsyncFn', () => {
     });
   });
 
-  it('should only consider last call and discard previous ones', async () => {
+  it("should only consider last call and discard previous ones", async () => {
     const queuedPromises: { id: number; resolve: () => void }[] = [];
     const delayedFunction1 = () => {
       return new Promise<number>((resolve) =>
@@ -137,9 +137,9 @@ describe('useAsyncFn', () => {
     expect(hook.result.current[0]).toEqual({ loading: false, value: 2 });
   });
 
-  it('should keeping value of initialState when loading', async () => {
-    const fetch = async () => 'new state';
-    const initialState = { loading: false, value: 'init state' };
+  it("should keeping value of initialState when loading", async () => {
+    const fetch = async () => "new state";
+    const initialState = { loading: false, value: "init state" };
 
     const hook = renderHook<
       { fn: () => Promise<string> },
@@ -150,17 +150,17 @@ describe('useAsyncFn', () => {
 
     const [state, callback] = hook.result.current;
     expect(state.loading).toBe(false);
-    expect(state.value).toBe('init state');
+    expect(state.value).toBe("init state");
 
     act(() => {
       callback();
     });
 
     expect(hook.result.current[0].loading).toBe(true);
-    expect(hook.result.current[0].value).toBe('init state');
+    expect(hook.result.current[0].value).toBe("init state");
 
     await hook.waitForNextUpdate();
     expect(hook.result.current[0].loading).toBe(false);
-    expect(hook.result.current[0].value).toBe('new state');
+    expect(hook.result.current[0].value).toBe("new state");
   });
 });

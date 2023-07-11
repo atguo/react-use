@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useStartTyping } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useStartTyping } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const input = React.useRef(null);
@@ -34,6 +34,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Sensors/useStartTyping', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useStartTyping.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Sensors/useStartTyping", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useStartTyping.md")} />)
+  .add("Demo", () => <Demo />);

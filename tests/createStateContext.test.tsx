@@ -1,51 +1,51 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { act, renderHook } from '@testing-library/react-hooks';
-import createStateContext from '../src/factory/createStateContext';
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react-hooks";
+import createStateContext from "../src/factory/createStateContext";
 
-it('should create a hook and a provider', () => {
+it("should create a hook and a provider", () => {
   const [useSharedNumber, SharedNumberProvider] = createStateContext(0);
   expect(useSharedNumber).toBeInstanceOf(Function);
   expect(SharedNumberProvider).toBeInstanceOf(Function);
 });
 
-describe('when using created hook', () => {
-  it('should throw out of a provider', () => {
-    const [useSharedText] = createStateContext('init');
+describe("when using created hook", () => {
+  it("should throw out of a provider", () => {
+    const [useSharedText] = createStateContext("init");
     const { result } = renderHook(() => useSharedText());
-    expect(result.error).toEqual(new Error('useStateContext must be used inside a StateProvider.'));
+    expect(result.error).toEqual(new Error("useStateContext must be used inside a StateProvider."));
   });
 
   const setUp = () => {
-    const [useSharedText, SharedTextProvider] = createStateContext('init');
+    const [useSharedText, SharedTextProvider] = createStateContext("init");
     const wrapper = ({ children }: { children?: React.ReactNode }) => (
       <SharedTextProvider>{children}</SharedTextProvider>
     );
     return renderHook(() => useSharedText(), { wrapper });
   };
 
-  it('should init state and updater', () => {
+  it("should init state and updater", () => {
     const { result } = setUp();
     const [sharedText, setSharedText] = result.current;
 
-    expect(sharedText).toEqual('init');
+    expect(sharedText).toEqual("init");
     expect(setSharedText).toBeInstanceOf(Function);
   });
 
-  it('should update the state', () => {
+  it("should update the state", () => {
     const { result } = setUp();
     const [, setSharedText] = result.current;
 
-    act(() => setSharedText('changed'));
+    act(() => setSharedText("changed"));
 
     const [sharedText] = result.current;
 
-    expect(sharedText).toEqual('changed');
+    expect(sharedText).toEqual("changed");
   });
 });
 
-describe('when using among multiple components', () => {
-  const [useSharedText, SharedTextProvider] = createStateContext('init');
+describe("when using among multiple components", () => {
+  const [useSharedText, SharedTextProvider] = createStateContext("init");
 
   const DisplayComponent = () => {
     const [sharedText] = useSharedText();
@@ -55,13 +55,13 @@ describe('when using among multiple components', () => {
   const UpdateComponent = () => {
     const [, setSharedText] = useSharedText();
     return (
-      <button type="button" onClick={() => setSharedText('changed')}>
+      <button type="button" onClick={() => setSharedText("changed")}>
         UPDATE
       </button>
     );
   };
 
-  it('should be in sync when under the same provider', () => {
+  it("should be in sync when under the same provider", () => {
     const { baseElement, getByText } = render(
       <SharedTextProvider>
         <DisplayComponent />
@@ -74,14 +74,14 @@ describe('when using among multiple components', () => {
       '<div><p>init</p><p>init</p><button type="button">UPDATE</button></div>'
     );
 
-    fireEvent.click(getByText('UPDATE'));
+    fireEvent.click(getByText("UPDATE"));
 
     expect(baseElement.innerHTML).toBe(
       '<div><p>changed</p><p>changed</p><button type="button">UPDATE</button></div>'
     );
   });
 
-  it('should be in update independently when under different providers', () => {
+  it("should be in update independently when under different providers", () => {
     const { baseElement, getByText } = render(
       <>
         <SharedTextProvider>
@@ -98,14 +98,14 @@ describe('when using among multiple components', () => {
       '<div><p>init</p><p>init</p><button type="button">UPDATE</button></div>'
     );
 
-    fireEvent.click(getByText('UPDATE'));
+    fireEvent.click(getByText("UPDATE"));
 
     expect(baseElement.innerHTML).toBe(
       '<div><p>init</p><p>changed</p><button type="button">UPDATE</button></div>'
     );
   });
 
-  it('should not update component that do not use the state context', () => {
+  it("should not update component that do not use the state context", () => {
     let renderCount = 0;
     const StaticComponent = () => {
       renderCount++;
@@ -126,7 +126,7 @@ describe('when using among multiple components', () => {
       '<div><p>static</p><p>init</p><button type="button">UPDATE</button></div>'
     );
 
-    fireEvent.click(getByText('UPDATE'));
+    fireEvent.click(getByText("UPDATE"));
 
     expect(baseElement.innerHTML).toBe(
       '<div><p>static</p><p>changed</p><button type="button">UPDATE</button></div>'
@@ -135,18 +135,18 @@ describe('when using among multiple components', () => {
     expect(renderCount).toBe(1);
   });
 
-  it('should override initialValue', () => {
+  it("should override initialValue", () => {
     const { baseElement } = render(
       <>
         <SharedTextProvider>
           <DisplayComponent />
         </SharedTextProvider>
-        <SharedTextProvider initialValue={'other'}>
+        <SharedTextProvider initialValue={"other"}>
           <DisplayComponent />
         </SharedTextProvider>
       </>
     );
 
-    expect(baseElement.innerHTML).toBe('<div><p>init</p><p>other</p></div>');
+    expect(baseElement.innerHTML).toBe("<div><p>init</p><p>other</p></div>");
   });
 });

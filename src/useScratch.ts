@@ -1,7 +1,7 @@
-import { cloneElement, FC, useEffect, useRef, useState } from 'react';
-import { render } from 'react-universal-interface';
-import useLatest from './useLatest';
-import { noop, off, on } from './misc/util';
+import { cloneElement, FC, useEffect, useRef, useState } from "react";
+import { render } from "react-universal-interface";
+import useLatest from "./useLatest";
+import { noop, off, on } from "./misc/util";
 
 export interface ScratchSensorParams {
   disabled?: boolean;
@@ -82,10 +82,10 @@ const useScratch = (
       refState.current = { ...refState.current, isScratching: false };
       (paramsRef.current.onScratchEnd || noop)(refState.current);
       setState({ isScratching: false });
-      off(window, 'mousemove', onMouseMove);
-      off(window, 'touchmove', onTouchMove);
-      off(window, 'mouseup', onMouseUp);
-      off(window, 'touchend', onTouchEnd);
+      off(window, "mousemove", onMouseMove);
+      off(window, "touchmove", onTouchMove);
+      off(window, "mouseup", onMouseUp);
+      off(window, "touchend", onTouchEnd);
     };
 
     onMouseUp = stopScratching;
@@ -117,10 +117,10 @@ const useScratch = (
       refState.current = newState;
       (paramsRef.current.onScratchStart || noop)(newState);
       setState(newState);
-      on(window, 'mousemove', onMouseMove);
-      on(window, 'touchmove', onTouchMove);
-      on(window, 'mouseup', onMouseUp);
-      on(window, 'touchend', onTouchEnd);
+      on(window, "mousemove", onMouseMove);
+      on(window, "touchmove", onTouchMove);
+      on(window, "mouseup", onMouseUp);
+      on(window, "touchend", onTouchEnd);
     };
 
     const onMouseDown = (event) => {
@@ -133,16 +133,16 @@ const useScratch = (
       startScratching(event.changedTouches[0].pageX, event.changedTouches[0].pageY);
     };
 
-    on(el, 'mousedown', onMouseDown);
-    on(el, 'touchstart', onTouchStart);
+    on(el, "mousedown", onMouseDown);
+    on(el, "touchstart", onTouchStart);
 
     return () => {
-      off(el, 'mousedown', onMouseDown);
-      off(el, 'touchstart', onTouchStart);
-      off(window, 'mousemove', onMouseMove);
-      off(window, 'touchmove', onTouchMove);
-      off(window, 'mouseup', onMouseUp);
-      off(window, 'touchend', onTouchEnd);
+      off(el, "mousedown", onMouseDown);
+      off(el, "touchstart", onTouchStart);
+      off(window, "mousemove", onMouseMove);
+      off(window, "touchmove", onTouchMove);
+      off(window, "mouseup", onMouseUp);
+      off(window, "touchend", onTouchEnd);
 
       if (refAnimationFrame.current) cancelAnimationFrame(refAnimationFrame.current);
       refAnimationFrame.current = null;
@@ -171,8 +171,8 @@ export const ScratchSensor: FC<ScratchSensorProps> = (props) => {
     ...element.props,
     ref: (el) => {
       if (element.props.ref) {
-        if (typeof element.props.ref === 'object') element.props.ref.current = el;
-        if (typeof element.props.ref === 'function') element.props.ref(el);
+        if (typeof element.props.ref === "object") element.props.ref.current = el;
+        if (typeof element.props.ref === "function") element.props.ref(el);
       }
       ref(el);
     },

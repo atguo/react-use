@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 export interface UseTitleOptions {
   restoreOnUnmount?: boolean;
@@ -24,4 +24,4 @@ function useTitle(title: string, options: UseTitleOptions = DEFAULT_USE_TITLE_OP
   }, []);
 }
 
-export default typeof document !== 'undefined' ? useTitle : (_title: string) => {};
+export default typeof document !== "undefined" ? useTitle : (_title: string) => {};

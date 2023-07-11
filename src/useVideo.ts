@@ -1,5 +1,5 @@
-import createHTMLMediaHook from './factory/createHTMLMediaHook';
+import createHTMLMediaHook from "./factory/createHTMLMediaHook";
 
-const useVideo = createHTMLMediaHook<HTMLVideoElement>('video');
+const useVideo = createHTMLMediaHook<HTMLVideoElement>("video");
 
 export default useVideo;

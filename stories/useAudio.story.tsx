@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useAudio } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useAudio } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [audio, state, controls, ref] = useAudio({
-    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
     autoPlay: true,
   });
 
@@ -29,6 +29,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('UI/useAudio', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useAudio.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("UI/useAudio", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useAudio.md")} />)
+  .add("Demo", () => <Demo />);

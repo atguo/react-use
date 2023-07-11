@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { off, on } from './misc/util';
+import { useEffect, useState } from "react";
+import { off, on } from "./misc/util";
 
 export interface MotionSensorState {
   acceleration: {
@@ -66,10 +66,10 @@ const useMotion = (initialState: MotionSensorState = defaultState) => {
       });
     };
 
-    on(window, 'devicemotion', handler);
+    on(window, "devicemotion", handler);
 
     return () => {
-      off(window, 'devicemotion', handler);
+      off(window, "devicemotion", handler);
     };
   }, []);
 

@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
-import { usePinchZoom } from '../src';
-import { ZoomState } from '../src/usePinchZoom';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePinchZoom } from "../src";
+import { ZoomState } from "../src/usePinchZoom";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [scale, setState] = useState(1);
@@ -33,6 +33,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Sensors/usePinchZoom', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/usePinchZoom.md')} />)
-  .add('Default', () => <Demo />);
+storiesOf("Sensors/usePinchZoom", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/usePinchZoom.md")} />)
+  .add("Default", () => <Demo />);

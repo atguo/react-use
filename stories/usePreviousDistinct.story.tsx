@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { usePreviousDistinct, useCounter } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { usePreviousDistinct, useCounter } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [count, { inc: relatedInc }] = useCounter(0);
@@ -18,6 +18,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('State/usePreviousDistinct', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/usePreviousDistinct.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/usePreviousDistinct", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/usePreviousDistinct.md")} />)
+  .add("Demo", () => <Demo />);

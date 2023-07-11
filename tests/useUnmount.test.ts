@@ -1,19 +1,19 @@
-import { renderHook } from '@testing-library/react-hooks';
-import { useUnmount } from '../src';
+import { renderHook } from "@testing-library/react-hooks";
+import { useUnmount } from "../src";
 
-describe('useUnmount', () => {
-  it('should be defined', () => {
+describe("useUnmount", () => {
+  it("should be defined", () => {
     expect(useUnmount).toBeDefined();
   });
 
-  it('should not call provided callback on mount', () => {
+  it("should not call provided callback on mount", () => {
     const spy = jest.fn();
     renderHook(() => useUnmount(spy));
 
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('should not call provided callback on re-renders', () => {
+  it("should not call provided callback on re-renders", () => {
     const spy = jest.fn();
     const hook = renderHook(() => useUnmount(spy));
 
@@ -25,7 +25,7 @@ describe('useUnmount', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('should call provided callback on unmount', () => {
+  it("should call provided callback on unmount", () => {
     const spy = jest.fn();
     const hook = renderHook(() => useUnmount(spy));
 
@@ -34,7 +34,7 @@ describe('useUnmount', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should call provided callback if is has been changed', () => {
+  it("should call provided callback if is has been changed", () => {
     const spy = jest.fn();
     const spy2 = jest.fn();
     const spy3 = jest.fn();

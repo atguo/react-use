@@ -1,16 +1,16 @@
-import React, { createRef } from 'react';
-import ReactDOM from 'react-dom';
-import TestUtils from 'react-dom/test-utils';
-import TestRenderer from 'react-test-renderer';
-import { intersectionObserver } from '@shopify/jest-dom-mocks';
-import { renderHook } from '@testing-library/react-hooks';
-import { useIntersection } from '../src';
+import React, { createRef } from "react";
+import ReactDOM from "react-dom";
+import TestUtils from "react-dom/test-utils";
+import TestRenderer from "react-test-renderer";
+import { intersectionObserver } from "@shopify/jest-dom-mocks";
+import { renderHook } from "@testing-library/react-hooks";
+import { useIntersection } from "../src";
 
 beforeEach(() => {
   intersectionObserver.mock();
   const IO = IntersectionObserver;
-  jest.spyOn(IO.prototype, 'disconnect');
-  jest.spyOn(global as any, 'IntersectionObserver');
+  jest.spyOn(IO.prototype, "disconnect");
+  jest.spyOn(global as any, "IntersectionObserver");
   IntersectionObserver.prototype = IO.prototype;
 });
 
@@ -18,15 +18,15 @@ afterEach(() => {
   intersectionObserver.restore();
 });
 
-describe('useIntersection', () => {
-  const container = document.createElement('div');
+describe("useIntersection", () => {
+  const container = document.createElement("div");
   let targetRef;
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(useIntersection).toBeDefined();
   });
 
-  it('should setup an IntersectionObserver targeting the ref element and using the options provided', () => {
+  it("should setup an IntersectionObserver targeting the ref element and using the options provided", () => {
     TestUtils.act(() => {
       targetRef = createRef();
       ReactDOM.render(<div ref={targetRef} />, container);
@@ -42,14 +42,14 @@ describe('useIntersection', () => {
     expect(intersectionObserver.observers[0].options).toEqual(observerOptions);
   });
 
-  it('should return null if a ref without a current value is provided', () => {
+  it("should return null if a ref without a current value is provided", () => {
     targetRef = createRef();
 
     const { result } = renderHook(() => useIntersection(targetRef, { root: null, threshold: 1 }));
     expect(result.current).toBe(null);
   });
 
-  it('should reset an intersectionObserverEntry when the ref changes', () => {
+  it("should reset an intersectionObserverEntry when the ref changes", () => {
     TestUtils.act(() => {
       targetRef = createRef();
       ReactDOM.render(<div ref={targetRef} />, container);
@@ -74,27 +74,27 @@ describe('useIntersection', () => {
 
     expect(result.current).toEqual(mockIntersectionObserverEntry);
 
-    targetRef.current = document.createElement('div');
+    targetRef.current = document.createElement("div");
     rerender();
 
     expect(result.current).toEqual(null);
   });
 
-  it('should return null if IntersectionObserver is not supported', () => {
+  it("should return null if IntersectionObserver is not supported", () => {
     targetRef = createRef();
-    targetRef.current = document.createElement('div');
+    targetRef.current = document.createElement("div");
     delete (window as any).IntersectionObserver;
 
     expect(() => renderHook(() => useIntersection(targetRef, {}))).not.toThrow();
   });
 
-  it('should disconnect an old IntersectionObserver instance when the ref changes', () => {
+  it("should disconnect an old IntersectionObserver instance when the ref changes", () => {
     targetRef = createRef();
-    targetRef.current = document.createElement('div');
+    targetRef.current = document.createElement("div");
 
     const { rerender } = renderHook(() => useIntersection(targetRef, {}));
 
-    targetRef.current = document.createElement('div');
+    targetRef.current = document.createElement("div");
     rerender();
 
     targetRef.current = null;
@@ -104,7 +104,7 @@ describe('useIntersection', () => {
     expect(IntersectionObserver.prototype.disconnect).toHaveBeenCalledTimes(2);
   });
 
-  it('should return the first IntersectionObserverEntry when the IntersectionObserver registers an intersection', () => {
+  it("should return the first IntersectionObserverEntry when the IntersectionObserver registers an intersection", () => {
     TestUtils.act(() => {
       targetRef = createRef();
       ReactDOM.render(<div ref={targetRef} />, container);
@@ -130,7 +130,7 @@ describe('useIntersection', () => {
     expect(result.current).toEqual(mockIntersectionObserverEntry);
   });
 
-  it('should setup a new IntersectionObserver when the ref changes', () => {
+  it("should setup a new IntersectionObserver when the ref changes", () => {
     let newRef;
     TestUtils.act(() => {
       targetRef = createRef();
@@ -157,7 +157,7 @@ describe('useIntersection', () => {
     expect(intersectionObserver.observers[0].target).toEqual(newRef.current);
   });
 
-  it('should setup a new IntersectionObserver when the options change', () => {
+  it("should setup a new IntersectionObserver when the options change", () => {
     TestUtils.act(() => {
       targetRef = createRef();
       ReactDOM.render(<div ref={targetRef} />, container);

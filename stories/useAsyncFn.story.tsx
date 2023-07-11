@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useAsyncFn } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useAsyncFn } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [state, callback] = useAsyncFn<string>(
@@ -9,9 +9,9 @@ const Demo = () => {
       new Promise<string>((resolve, reject) => {
         setTimeout(() => {
           if (Math.random() > 0.5) {
-            resolve('✌️');
+            resolve("✌️");
           } else {
-            reject(new Error('A pseudo random error occurred'));
+            reject(new Error("A pseudo random error occurred"));
           }
         }, 1000);
       })
@@ -32,6 +32,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Side effects/useAsyncFn', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useAsyncFn.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Side effects/useAsyncFn", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useAsyncFn.md")} />)
+  .add("Demo", () => <Demo />);

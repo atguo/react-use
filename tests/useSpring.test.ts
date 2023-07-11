@@ -1,6 +1,6 @@
-import { act, renderHook } from '@testing-library/react-hooks';
-import { Spring } from 'rebound';
-import useSpring from '../src/useSpring';
+import { act, renderHook } from "@testing-library/react-hooks";
+import { Spring } from "rebound";
+import useSpring from "../src/useSpring";
 
 // simulate Spring for testing
 const mockSetCurrentValue = jest.fn();
@@ -48,7 +48,7 @@ const mockCreateSpring: Spring = jest.fn().mockImplementation(() => {
   };
 }) as any;
 
-jest.mock('rebound', () => {
+jest.mock("rebound", () => {
   return {
     Sprint: {},
     SpringSystem: jest.fn().mockImplementation(() => {
@@ -57,7 +57,7 @@ jest.mock('rebound', () => {
   };
 });
 
-it('should init value to provided target', () => {
+it("should init value to provided target", () => {
   const { result } = renderHook(() => useSpring(70));
 
   expect(result.current).toBe(70);
@@ -67,14 +67,14 @@ it('should init value to provided target', () => {
   expect(mockCreateSpring).toHaveBeenCalledWith(50, 3);
 });
 
-it('should create spring with custom tension and friction args provided', () => {
+it("should create spring with custom tension and friction args provided", () => {
   renderHook(() => useSpring(500, 20, 7));
 
   expect(mockCreateSpring).toHaveBeenCalledTimes(1);
   expect(mockCreateSpring).toHaveBeenCalledWith(20, 7);
 });
 
-it('should subscribe only once', () => {
+it("should subscribe only once", () => {
   const { rerender } = renderHook(() => useSpring());
 
   expect(mockAddListener).toHaveBeenCalledTimes(1);
@@ -85,7 +85,7 @@ it('should subscribe only once', () => {
   expect(mockAddListener).toHaveBeenCalledTimes(1);
 });
 
-it('should handle spring update', () => {
+it("should handle spring update", () => {
   let targetValue = 70;
   let lastSpringValue = targetValue;
   const { result, rerender } = renderHook(() => useSpring(targetValue));
@@ -108,7 +108,7 @@ it('should handle spring update', () => {
   expect(result.current).toBeLessThanOrEqual(targetValue);
 });
 
-it('should remove listener on unmount', () => {
+it("should remove listener on unmount", () => {
   const { unmount } = renderHook(() => useSpring());
   expect(mockRemoveListener).not.toHaveBeenCalled();
 

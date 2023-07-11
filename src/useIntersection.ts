@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from 'react';
+import { RefObject, useEffect, useState } from "react";
 
 const useIntersection = (
   ref: RefObject<HTMLElement>,
@@ -8,7 +8,7 @@ const useIntersection = (
     useState<IntersectionObserverEntry | null>(null);
 
   useEffect(() => {
-    if (ref.current && typeof IntersectionObserver === 'function') {
+    if (ref.current && typeof IntersectionObserver === "function") {
       const handler = (entries: IntersectionObserverEntry[]) => {
         setIntersectionObserverEntry(entries[0]);
       };

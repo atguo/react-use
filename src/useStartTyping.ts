@@ -1,5 +1,5 @@
-import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
-import { off, on } from './misc/util';
+import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
+import { off, on } from "./misc/util";
 
 const isFocusedElementEditable = () => {
   const { activeElement, body } = document;
@@ -15,13 +15,13 @@ const isFocusedElementEditable = () => {
 
   // Assume <input> and <textarea> elements are editable.
   switch (activeElement.tagName) {
-    case 'INPUT':
-    case 'TEXTAREA':
+    case "INPUT":
+    case "TEXTAREA":
       return true;
   }
 
   // Check if any other focused element id editable.
-  return activeElement.hasAttribute('contenteditable');
+  return activeElement.hasAttribute("contenteditable");
 };
 
 const isTypedCharGood = ({ keyCode, metaKey, ctrlKey, altKey }: KeyboardEvent) => {
@@ -46,9 +46,9 @@ const useStartTyping = (onStartTyping: (event: KeyboardEvent) => void) => {
       !isFocusedElementEditable() && isTypedCharGood(event) && onStartTyping(event);
     };
 
-    on(document, 'keydown', keydown);
+    on(document, "keydown", keydown);
     return () => {
-      off(document, 'keydown', keydown);
+      off(document, "keydown", keydown);
     };
   }, []);
 };

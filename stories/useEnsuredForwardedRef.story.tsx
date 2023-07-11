@@ -1,9 +1,9 @@
-import { storiesOf } from '@storybook/react';
-import React, { forwardRef, useRef, useState, useEffect, MutableRefObject } from 'react';
-import { useEnsuredForwardedRef } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import React, { forwardRef, useRef, useState, useEffect, MutableRefObject } from "react";
+import { useEnsuredForwardedRef } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
-import { boolean, withKnobs } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from "@storybook/addon-knobs";
 
 const INITIAL_SIZE = {
   width: null,
@@ -34,7 +34,7 @@ const Demo = ({ activeForwardRef }) => {
   return (
     <>
       <button onClick={handleClick} disabled={!activeForwardRef}>
-        {activeForwardRef ? 'Update parent component' : 'forwardRef value is undefined'}
+        {activeForwardRef ? "Update parent component" : "forwardRef value is undefined"}
       </button>
       <div>Parent component using external ref: (textarea size)</div>
       <pre>{JSON.stringify(size, null, 2)}</pre>
@@ -70,10 +70,10 @@ const Child = forwardRef(({}, ref: MutableRefObject<HTMLTextAreaElement>) => {
   );
 });
 
-storiesOf('Miscellaneous/useEnsuredForwardedRef', module)
+storiesOf("Miscellaneous/useEnsuredForwardedRef", module)
   .addDecorator(withKnobs)
-  .add('Docs', () => <ShowDocs md={require('../docs/useEnsuredForwardedRef.md')} />)
-  .add('Demo', () => {
-    const activeForwardRef = boolean('activeForwardRef', true);
+  .add("Docs", () => <ShowDocs md={require("../docs/useEnsuredForwardedRef.md")} />)
+  .add("Demo", () => {
+    const activeForwardRef = boolean("activeForwardRef", true);
     return <Demo activeForwardRef={activeForwardRef} />;
   });

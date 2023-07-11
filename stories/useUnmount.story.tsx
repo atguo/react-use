@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useUnmount } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useUnmount } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
-  useUnmount(() => alert('UNMOUNTED'));
+  useUnmount(() => alert("UNMOUNTED"));
 
   return (
     <div>
@@ -14,6 +14,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Lifecycle/useUnmount', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useUnmount.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Lifecycle/useUnmount", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useUnmount.md")} />)
+  .add("Demo", () => <Demo />);

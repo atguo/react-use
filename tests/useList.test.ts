@@ -1,9 +1,9 @@
-import { act, renderHook } from '@testing-library/react-hooks';
-import { useRef } from 'react';
-import useList, { ListActions } from '../src/useList';
+import { act, renderHook } from "@testing-library/react-hooks";
+import { useRef } from "react";
+import useList, { ListActions } from "../src/useList";
 
-describe('useList', () => {
-  it('should be defined', () => {
+describe("useList", () => {
+  it("should be defined", () => {
     expect(useList).toBeDefined();
   });
 
@@ -18,7 +18,7 @@ describe('useList', () => {
     );
   }
 
-  it('should init with 1st parameter and actions', () => {
+  it("should init with 1st parameter and actions", () => {
     const hook = getHook([1, 2, 3]);
     const [, [list, actions]] = hook.result.current;
 
@@ -40,7 +40,7 @@ describe('useList', () => {
     });
   });
 
-  it('should return the same actions object each render', () => {
+  it("should return the same actions object each render", () => {
     const hook = getHook([1, 2, 3]);
     const [, [, actions]] = hook.result.current;
 
@@ -51,12 +51,12 @@ describe('useList', () => {
     expect(actions).toBe(hook.result.current[1][1]);
   });
 
-  it('should default with empty array', () => {
+  it("should default with empty array", () => {
     expect(getHook().result.current[1][0]).toEqual([]);
   });
 
-  describe('set()', () => {
-    it('should reset list with given array and cause re-render', () => {
+  describe("set()", () => {
+    it("should reset list with given array and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { set }]] = hook.result.current;
 
@@ -75,8 +75,8 @@ describe('useList', () => {
     });
   });
 
-  describe('push()', () => {
-    it('should add arbitrary amount of items to the end and cause re-render', () => {
+  describe("push()", () => {
+    it("should add arbitrary amount of items to the end and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { push }]] = hook.result.current;
 
@@ -88,7 +88,7 @@ describe('useList', () => {
       expect(hook.result.current[0]).toBe(2);
     });
 
-    it('should not do anything if called with no parameters', () => {
+    it("should not do anything if called with no parameters", () => {
       const hook = getHook([1, 2, 3]);
       const [, [list, { push }]] = hook.result.current;
 
@@ -101,8 +101,8 @@ describe('useList', () => {
     });
   });
 
-  describe('updateAt()', () => {
-    it('should replace item at given index with given value and cause re-render', () => {
+  describe("updateAt()", () => {
+    it("should replace item at given index with given value and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { updateAt }]] = hook.result.current;
 
@@ -114,7 +114,7 @@ describe('useList', () => {
       expect(hook.result.current[1][0]).toEqual([1, 5, 3]);
     });
 
-    it('should work fine if target index is out of array length', () => {
+    it("should work fine if target index is out of array length", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { updateAt }]] = hook.result.current;
 
@@ -127,8 +127,8 @@ describe('useList', () => {
     });
   });
 
-  describe('insertAt()', () => {
-    it('should insert item at given index shifting all the right elements and cause re-render', () => {
+  describe("insertAt()", () => {
+    it("should insert item at given index shifting all the right elements and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { insertAt }]] = hook.result.current;
 
@@ -140,7 +140,7 @@ describe('useList', () => {
       expect(hook.result.current[1][0]).toEqual([1, 5, 2, 3]);
     });
 
-    it('should work if index is out of array length', () => {
+    it("should work if index is out of array length", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { insertAt }]] = hook.result.current;
 
@@ -153,8 +153,8 @@ describe('useList', () => {
     });
   });
 
-  describe('update()', () => {
-    it('should replace all items that matches the predicate and cause re-render', () => {
+  describe("update()", () => {
+    it("should replace all items that matches the predicate and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { update }]] = hook.result.current;
 
@@ -166,7 +166,7 @@ describe('useList', () => {
       expect(hook.result.current[1][0]).toEqual([0, 2, 0]);
     });
 
-    it('should pass two parameters to the predicate, iterated element and new one', () => {
+    it("should pass two parameters to the predicate, iterated element and new one", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { update }]] = hook.result.current;
       const spy = jest.fn();
@@ -180,8 +180,8 @@ describe('useList', () => {
     });
   });
 
-  describe('updateFirst()', () => {
-    it('should replace first items that matches the predicate and cause re-render', () => {
+  describe("updateFirst()", () => {
+    it("should replace first items that matches the predicate and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { updateFirst }]] = hook.result.current;
 
@@ -193,7 +193,7 @@ describe('useList', () => {
       expect(hook.result.current[1][0]).toEqual([0, 2, 3]);
     });
 
-    it('should pass two parameters to the predicate, iterated element and new one', () => {
+    it("should pass two parameters to the predicate, iterated element and new one", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { updateFirst }]] = hook.result.current;
       const spy = jest.fn();
@@ -208,8 +208,8 @@ describe('useList', () => {
     });
   });
 
-  describe('upsert()', () => {
-    it('should replace first item that matches the predicate and cause re-render', () => {
+  describe("upsert()", () => {
+    it("should replace first item that matches the predicate and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { upsert }]] = hook.result.current;
 
@@ -221,7 +221,7 @@ describe('useList', () => {
       expect(hook.result.current[1][0]).toEqual([0, 2, 3]);
     });
 
-    it('otherwise should push it to the list and cause re-render', () => {
+    it("otherwise should push it to the list and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { upsert }]] = hook.result.current;
 
@@ -233,7 +233,7 @@ describe('useList', () => {
       expect(hook.result.current[1][0]).toEqual([1, 2, 3, 0]);
     });
 
-    it('should pass two parameters to the predicate, iterated element and new one', () => {
+    it("should pass two parameters to the predicate, iterated element and new one", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { upsert }]] = hook.result.current;
       const spy = jest.fn();
@@ -248,8 +248,8 @@ describe('useList', () => {
     });
   });
 
-  describe('sort()', () => {
-    it('should sort the list with given comparator and cause re-render', () => {
+  describe("sort()", () => {
+    it("should sort the list with given comparator and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { sort }]] = hook.result.current;
 
@@ -261,7 +261,7 @@ describe('useList', () => {
       expect(hook.result.current[1][0]).toEqual([3, 2, 1]);
     });
 
-    it('should use default array`s sorting function of called without parameters', () => {
+    it("should use default array`s sorting function of called without parameters", () => {
       const hook = getHook([2, 3, 1]);
       const [, [, { sort }]] = hook.result.current;
 
@@ -274,8 +274,8 @@ describe('useList', () => {
     });
   });
 
-  describe('filter()', () => {
-    it('should filter the list with given predicate and cause re-render', () => {
+  describe("filter()", () => {
+    it("should filter the list with given predicate and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { filter }]] = hook.result.current;
 
@@ -287,7 +287,7 @@ describe('useList', () => {
       expect(hook.result.current[1][0]).toEqual([1, 3]);
     });
 
-    it('should pass three parameters to the predicate, iterated element, it`s index and filtered array', () => {
+    it("should pass three parameters to the predicate, iterated element, it`s index and filtered array", () => {
       const hook = getHook([1, 2, 3]);
       const [, [list, { filter }]] = hook.result.current;
       const spy = jest.fn((_, _2, _3) => false);
@@ -303,8 +303,8 @@ describe('useList', () => {
     });
   });
 
-  describe('removeAt()', () => {
-    it('should remove item at given index and cause re-render', () => {
+  describe("removeAt()", () => {
+    it("should remove item at given index and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { removeAt }]] = hook.result.current;
 
@@ -316,7 +316,7 @@ describe('useList', () => {
       expect(hook.result.current[1][0]).toEqual([1, 3]);
     });
 
-    it('should do nothing if index is out of array length, although it should cause re-render', () => {
+    it("should do nothing if index is out of array length, although it should cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { removeAt }]] = hook.result.current;
 
@@ -329,8 +329,8 @@ describe('useList', () => {
     });
   });
 
-  describe('remove()', () => {
-    it('should be a ref to removeAt', () => {
+  describe("remove()", () => {
+    it("should be a ref to removeAt", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { remove, removeAt }]] = hook.result.current;
 
@@ -338,8 +338,8 @@ describe('useList', () => {
     });
   });
 
-  describe('clear()', () => {
-    it('should clear the list and cause re-render', () => {
+  describe("clear()", () => {
+    it("should clear the list and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { clear }]] = hook.result.current;
 
@@ -352,8 +352,8 @@ describe('useList', () => {
     });
   });
 
-  describe('reset()', () => {
-    it('should reset list to initial values and cause re-render', () => {
+  describe("reset()", () => {
+    it("should reset list to initial values and cause re-render", () => {
       const hook = getHook([1, 2, 3]);
       const [, [, { set, reset }]] = hook.result.current;
 

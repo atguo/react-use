@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useCallback } from 'react';
-import { useTimeoutFn } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useCallback } from "react";
+import { useTimeoutFn } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
-  const [state, setState] = React.useState('Not called yet');
+  const [state, setState] = React.useState("Not called yet");
 
   function fn() {
     setState(`called at ${Date.now()}`);
@@ -18,7 +18,7 @@ const Demo = () => {
       setState(`cancelled`);
     } else {
       reset();
-      setState('Not called yet');
+      setState("Not called yet");
     }
   }, []);
 
@@ -26,20 +26,20 @@ const Demo = () => {
 
   return (
     <div>
-      <div>{readyState !== null ? 'Function will be called in 5 seconds' : 'Timer cancelled'}</div>
+      <div>{readyState !== null ? "Function will be called in 5 seconds" : "Timer cancelled"}</div>
       <button onClick={cancelButtonClick}>
-        {' '}
-        {readyState === false ? 'cancel' : 'restart'} timeout
+        {" "}
+        {readyState === false ? "cancel" : "restart"} timeout
       </button>
       <br />
       <div>
-        Function state: {readyState === false ? 'Pending' : readyState ? 'Called' : 'Cancelled'}
+        Function state: {readyState === false ? "Pending" : readyState ? "Called" : "Cancelled"}
       </div>
       <div>{state}</div>
     </div>
   );
 };
 
-storiesOf('Animation/useTimeoutFn', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useTimeoutFn.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Animation/useTimeoutFn", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useTimeoutFn.md")} />)
+  .add("Demo", () => <Demo />);

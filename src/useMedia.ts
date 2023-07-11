@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { isBrowser } from './misc/util';
+import { useEffect, useState } from "react";
+import { isBrowser } from "./misc/util";
 
 const getInitialState = (query: string, defaultState?: boolean) => {
   // Prevent a React hydration mismatch when a default value is provided by not defaulting to window.matchMedia(query).matches.
@@ -12,9 +12,9 @@ const getInitialState = (query: string, defaultState?: boolean) => {
   }
 
   // A default value has not been provided, and you are rendering on the server, warn of a possible hydration mismatch when defaulting to false.
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== "production") {
     console.warn(
-      '`useMedia` When server side rendering, defaultState should be defined to prevent a hydration mismatches.'
+      "`useMedia` When server side rendering, defaultState should be defined to prevent a hydration mismatches."
     );
   }
 

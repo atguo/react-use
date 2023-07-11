@@ -1,8 +1,8 @@
-import { renderHook } from '@testing-library/react-hooks';
-import usePreviousDistinct, { Predicate } from '../src/usePreviousDistinct';
+import { renderHook } from "@testing-library/react-hooks";
+import usePreviousDistinct, { Predicate } from "../src/usePreviousDistinct";
 
-describe('usePreviousDistinct', () => {
-  it('should be defined', () => {
+describe("usePreviousDistinct", () => {
+  it("should be defined", () => {
     expect(usePreviousDistinct).toBeDefined();
   });
 
@@ -15,18 +15,18 @@ describe('usePreviousDistinct', () => {
     });
   }
 
-  it('should return undefined on init', () => {
+  it("should return undefined on init", () => {
     expect(getHook().result.current).toBeUndefined();
   });
 
-  it('should not invoke predicate on first render', () => {
+  it("should not invoke predicate on first render", () => {
     const spy = jest.fn();
     getHook(0, spy);
 
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('should update previous value only after render with different value', () => {
+  it("should update previous value only after render with different value", () => {
     const hook = getHook();
 
     expect(hook.result.current).toBeUndefined();
@@ -47,7 +47,7 @@ describe('usePreviousDistinct', () => {
     expect(hook.result.current).toBe(2);
   });
 
-  it('should work fine with `undefined` values', () => {
+  it("should work fine with `undefined` values", () => {
     const hook = renderHook(({ value }) => usePreviousDistinct(value), {
       initialProps: { value: undefined as undefined | number },
     });
@@ -64,10 +64,10 @@ describe('usePreviousDistinct', () => {
     expect(hook.result.current).toBeUndefined();
   });
 
-  it('should receive a predicate as a second parameter that will compare prev and current', () => {
-    const obj1 = { label: 'John', value: 'john' };
-    const obj2 = { label: 'Jonny', value: 'john' };
-    const obj3 = { label: 'Kate', value: 'kate' };
+  it("should receive a predicate as a second parameter that will compare prev and current", () => {
+    const obj1 = { label: "John", value: "john" };
+    const obj2 = { label: "Jonny", value: "john" };
+    const obj3 = { label: "Kate", value: "kate" };
     const predicate = (a, b) => !!a && a.value === b.value;
 
     const hook = getHook(obj1 as { label: string; value: string }, predicate);

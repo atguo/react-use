@@ -1,13 +1,13 @@
-import { renderHook } from '@testing-library/react-hooks';
-import { useCallback } from 'react';
-import useAsync from '../src/useAsync';
+import { renderHook } from "@testing-library/react-hooks";
+import { useCallback } from "react";
+import useAsync from "../src/useAsync";
 
-describe('useAsync', () => {
-  it('should be defined', () => {
+describe("useAsync", () => {
+  it("should be defined", () => {
     expect(useAsync).toBeDefined();
   });
 
-  describe('a success', () => {
+  describe("a success", () => {
     let hook;
     let callCount = 0;
 
@@ -17,7 +17,7 @@ describe('useAsync', () => {
 
         const wait = setTimeout(() => {
           clearTimeout(wait);
-          resolve('yay');
+          resolve("yay");
         }, 0);
       });
     };
@@ -31,12 +31,12 @@ describe('useAsync', () => {
       });
     });
 
-    it('initially starts loading', async () => {
+    it("initially starts loading", async () => {
       expect(hook.result.current.loading).toEqual(true);
       await hook.waitForNextUpdate();
     });
 
-    it('resolves', async () => {
+    it("resolves", async () => {
       expect.assertions(4);
 
       hook.rerender({ fn: resolver });
@@ -44,12 +44,12 @@ describe('useAsync', () => {
 
       expect(callCount).toEqual(1);
       expect(hook.result.current.loading).toBeFalsy();
-      expect(hook.result.current.value).toEqual('yay');
+      expect(hook.result.current.value).toEqual("yay");
       expect(hook.result.current.error).toEqual(undefined);
     });
   });
 
-  describe('an error', () => {
+  describe("an error", () => {
     let hook;
     let callCount = 0;
 
@@ -59,7 +59,7 @@ describe('useAsync', () => {
 
         const wait = setTimeout(() => {
           clearTimeout(wait);
-          reject('yay');
+          reject("yay");
         }, 0);
       });
     };
@@ -73,12 +73,12 @@ describe('useAsync', () => {
       });
     });
 
-    it('initially starts loading', async () => {
+    it("initially starts loading", async () => {
       expect(hook.result.current.loading).toBeTruthy();
       await hook.waitForNextUpdate();
     });
 
-    it('resolves', async () => {
+    it("resolves", async () => {
       expect.assertions(4);
 
       hook.rerender({ fn: rejection });
@@ -86,24 +86,24 @@ describe('useAsync', () => {
 
       expect(callCount).toEqual(1);
       expect(hook.result.current.loading).toBeFalsy();
-      expect(hook.result.current.error).toEqual('yay');
+      expect(hook.result.current.error).toEqual("yay");
       expect(hook.result.current.value).toEqual(undefined);
     });
   });
 
-  describe('re-evaluates when dependencies change', () => {
-    describe('the fn is a dependency', () => {
+  describe("re-evaluates when dependencies change", () => {
+    describe("the fn is a dependency", () => {
       let hook;
       let callCount = 0;
 
       const initialFn = async () => {
         callCount++;
-        return 'value';
+        return "value";
       };
 
       const differentFn = async () => {
         callCount++;
-        return 'new value';
+        return "new value";
       };
 
       beforeEach((done) => {
@@ -116,11 +116,11 @@ describe('useAsync', () => {
         hook.waitForNextUpdate().then(done);
       });
 
-      it('renders the first value', () => {
-        expect(hook.result.current.value).toEqual('value');
+      it("renders the first value", () => {
+        expect(hook.result.current.value).toEqual("value");
       });
 
-      it('renders a different value when deps change', async () => {
+      it("renders a different value when deps change", async () => {
         expect.assertions(3);
 
         expect(callCount).toEqual(1);
@@ -129,11 +129,11 @@ describe('useAsync', () => {
         await hook.waitForNextUpdate();
 
         expect(callCount).toEqual(2);
-        expect(hook.result.current.value).toEqual('new value');
+        expect(hook.result.current.value).toEqual("new value");
       });
     });
 
-    describe('the additional dependencies list changes', () => {
+    describe("the additional dependencies list changes", () => {
       let callCount = 0;
       let hook;
 
@@ -160,17 +160,17 @@ describe('useAsync', () => {
         hook.waitForNextUpdate().then(done);
       });
 
-      it('initial renders the first passed pargs', () => {
-        expect(hook.result.current.value).toEqual('counter is 0 and callCount is 1');
+      it("initial renders the first passed pargs", () => {
+        expect(hook.result.current.value).toEqual("counter is 0 and callCount is 1");
       });
 
-      it('renders a different value when deps change', async () => {
+      it("renders a different value when deps change", async () => {
         expect.assertions(1);
 
         hook.rerender({ fn: staticFunction, counter: 1 });
         await hook.waitForNextUpdate();
 
-        expect(hook.result.current.value).toEqual('counter is 1 and callCount is 2');
+        expect(hook.result.current.value).toEqual("counter is 1 and callCount is 2");
       });
     });
   });

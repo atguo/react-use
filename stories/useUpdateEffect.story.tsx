@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useUpdateEffect } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useUpdateEffect } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [count, setCount] = React.useState(0);
@@ -19,6 +19,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Lifecycle/useUpdateEffect', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useUpdateEffect.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Lifecycle/useUpdateEffect", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useUpdateEffect.md")} />)
+  .add("Demo", () => <Demo />);

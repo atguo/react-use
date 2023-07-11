@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useSetState } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useSetState } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [state, setState] = useSetState({});
@@ -9,8 +9,8 @@ const Demo = () => {
   return (
     <div>
       <pre>{JSON.stringify(state, null, 2)}</pre>
-      <button onClick={() => setState({ hello: 'world' })}>hello</button>
-      <button onClick={() => setState({ foo: 'bar' })}>foo</button>
+      <button onClick={() => setState({ hello: "world" })}>hello</button>
+      <button onClick={() => setState({ foo: "bar" })}>foo</button>
       <button
         onClick={() => {
           setState((prevState) => ({
@@ -23,6 +23,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('State/useSetState', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useSetState.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/useSetState", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useSetState.md")} />)
+  .add("Demo", () => <Demo />);

@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useCounter, useShallowCompareEffect } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useCounter, useShallowCompareEffect } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [countNormal, { inc: incNormal }] = useCounter(0);
@@ -36,6 +36,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Lifecycle/useShallowCompareEffect', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useShallowCompareEffect.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Lifecycle/useShallowCompareEffect", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useShallowCompareEffect.md")} />)
+  .add("Demo", () => <Demo />);

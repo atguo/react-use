@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useDefault } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useDefault } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
-  const initialUser = { name: 'Marshall' };
-  const defaultUser = { name: 'Mathers' };
+  const initialUser = { name: "Marshall" };
+  const defaultUser = { name: "Mathers" };
   const [user, setUser] = useDefault(defaultUser, initialUser);
 
   return (
@@ -17,6 +17,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('State/useDefault', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useDefault.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/useDefault", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useDefault.md")} />)
+  .add("Demo", () => <Demo />);

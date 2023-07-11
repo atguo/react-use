@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { isNavigator, noop } from './misc/util';
+import { useEffect } from "react";
+import { isNavigator, noop } from "./misc/util";
 
 export type VibrationPattern = number | number[];
 
-const isVibrationApiSupported = isNavigator && 'vibrate' in navigator;
+const isVibrationApiSupported = isNavigator && "vibrate" in navigator;
 
 function useVibrate(
   enabled: boolean = true,

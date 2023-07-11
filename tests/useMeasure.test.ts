@@ -1,11 +1,11 @@
-import { renderHook, act } from '@testing-library/react-hooks';
-import useMeasure, { UseMeasureRef } from '../src/useMeasure';
+import { renderHook, act } from "@testing-library/react-hooks";
+import useMeasure, { UseMeasureRef } from "../src/useMeasure";
 
-it('by default, state defaults every value to -1', () => {
+it("by default, state defaults every value to -1", () => {
   const { result } = renderHook(() => useMeasure());
 
   act(() => {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     (result.current[0] as UseMeasureRef)(div);
   });
 
@@ -19,7 +19,7 @@ it('by default, state defaults every value to -1', () => {
   });
 });
 
-it('synchronously sets up ResizeObserver listener', () => {
+it("synchronously sets up ResizeObserver listener", () => {
   let listener: ((rect: any) => void) | undefined = undefined;
   (window as any).ResizeObserver = class ResizeObserver {
     constructor(ls) {
@@ -32,14 +32,14 @@ it('synchronously sets up ResizeObserver listener', () => {
   const { result } = renderHook(() => useMeasure());
 
   act(() => {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     (result.current[0] as UseMeasureRef)(div);
   });
 
-  expect(typeof listener).toBe('function');
+  expect(typeof listener).toBe("function");
 });
 
-it('tracks rectangle of a DOM element', () => {
+it("tracks rectangle of a DOM element", () => {
   let listener: ((rect: any) => void) | undefined = undefined;
   (window as any).ResizeObserver = class ResizeObserver {
     constructor(ls) {
@@ -52,7 +52,7 @@ it('tracks rectangle of a DOM element', () => {
   const { result } = renderHook(() => useMeasure());
 
   act(() => {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     (result.current[0] as UseMeasureRef)(div);
   });
 
@@ -85,7 +85,7 @@ it('tracks rectangle of a DOM element', () => {
   });
 });
 
-it('tracks multiple updates', () => {
+it("tracks multiple updates", () => {
   let listener: ((rect: any) => void) | undefined = undefined;
   (window as any).ResizeObserver = class ResizeObserver {
     constructor(ls) {
@@ -98,7 +98,7 @@ it('tracks multiple updates', () => {
   const { result } = renderHook(() => useMeasure());
 
   act(() => {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     (result.current[0] as UseMeasureRef)(div);
   });
 
@@ -159,7 +159,7 @@ it('tracks multiple updates', () => {
   });
 });
 
-it('calls .disconnect() on ResizeObserver when component unmounts', () => {
+it("calls .disconnect() on ResizeObserver when component unmounts", () => {
   const disconnect = jest.fn();
   (window as any).ResizeObserver = class ResizeObserver {
     observe() {}
@@ -171,7 +171,7 @@ it('calls .disconnect() on ResizeObserver when component unmounts', () => {
   const { result, unmount } = renderHook(() => useMeasure());
 
   act(() => {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     (result.current[0] as UseMeasureRef)(div);
   });
 

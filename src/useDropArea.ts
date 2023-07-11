@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
-import useMountedState from './useMountedState';
-import { noop } from './misc/util';
+import { useMemo, useState } from "react";
+import useMountedState from "./useMountedState";
+import { noop } from "./misc/util";
 
 export interface DropAreaState {
   over: boolean;
@@ -28,7 +28,7 @@ const defaultState: DropAreaState = {
 
 const createProcess =
   (options: DropAreaOptions, mounted: boolean) => (dataTransfer: DataTransfer, event) => {
-    const uri = dataTransfer.getData('text/uri-list');
+    const uri = dataTransfer.getData("text/uri-list");
 
     if (uri) {
       (options.onUri || noop)(uri, event);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type SpeechOptions = {
   lang: string;
@@ -10,7 +10,7 @@ type SpeechOptions = {
 
 export type ISpeechOptions = Partial<SpeechOptions>;
 
-export type VoiceInfo = Pick<SpeechSynthesisVoice, 'lang' | 'name'>;
+export type VoiceInfo = Pick<SpeechSynthesisVoice, "lang" | "name">;
 
 export type ISpeechState = SpeechOptions & {
   isPlaying: boolean;
@@ -28,11 +28,11 @@ enum Status {
 const useSpeech = (text: string, options: ISpeechOptions): ISpeechState => {
   let mounted = useRef<boolean>(false);
   const [state, setState] = useState<ISpeechState>(() => {
-    const { lang = 'default', name = '' } = options.voice || {};
+    const { lang = "default", name = "" } = options.voice || {};
     return {
       isPlaying: false,
       status: Status[Status.init],
-      lang: options.lang || 'default',
+      lang: options.lang || "default",
       voiceInfo: { lang, name },
       rate: options.rate || 1,
       pitch: options.pitch || 1,

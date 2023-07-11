@@ -1,7 +1,7 @@
-import { CSSProperties, RefObject, useEffect, useRef } from 'react';
-import { isBrowser, noop, off, on } from './misc/util';
-import useMountedState from './useMountedState';
-import useSetState from './useSetState';
+import { CSSProperties, RefObject, useEffect, useRef } from "react";
+import { isBrowser, noop, off, on } from "./misc/util";
+import useMountedState from "./useMountedState";
+import useSetState from "./useSetState";
 
 export interface State {
   isSliding: boolean;
@@ -35,7 +35,7 @@ const useSlider = (ref: RefObject<HTMLElement>, options: Partial<Options> = {}):
       const reverse = options.reverse === undefined ? false : options.reverse;
 
       if (ref.current && styles) {
-        ref.current.style.userSelect = 'none';
+        ref.current.style.userSelect = "none";
       }
 
       const startScrubbing = () => {
@@ -73,19 +73,19 @@ const useSlider = (ref: RefObject<HTMLElement>, options: Partial<Options> = {}):
         : (event: TouchEvent) => onScrub(event.changedTouches[0].clientX);
 
       const bindEvents = () => {
-        on(document, 'mousemove', onMouseMove);
-        on(document, 'mouseup', stopScrubbing);
+        on(document, "mousemove", onMouseMove);
+        on(document, "mouseup", stopScrubbing);
 
-        on(document, 'touchmove', onTouchMove);
-        on(document, 'touchend', stopScrubbing);
+        on(document, "touchmove", onTouchMove);
+        on(document, "touchend", stopScrubbing);
       };
 
       const unbindEvents = () => {
-        off(document, 'mousemove', onMouseMove);
-        off(document, 'mouseup', stopScrubbing);
+        off(document, "mousemove", onMouseMove);
+        off(document, "mouseup", stopScrubbing);
 
-        off(document, 'touchmove', onTouchMove);
-        off(document, 'touchend', stopScrubbing);
+        off(document, "touchmove", onTouchMove);
+        off(document, "touchend", stopScrubbing);
       };
 
       const onScrub = (clientXY: number) => {
@@ -123,12 +123,12 @@ const useSlider = (ref: RefObject<HTMLElement>, options: Partial<Options> = {}):
         });
       };
 
-      on(ref.current, 'mousedown', onMouseDown);
-      on(ref.current, 'touchstart', onTouchStart);
+      on(ref.current, "mousedown", onMouseDown);
+      on(ref.current, "touchstart", onTouchStart);
 
       return () => {
-        off(ref.current, 'mousedown', onMouseDown);
-        off(ref.current, 'touchstart', onTouchStart);
+        off(ref.current, "mousedown", onMouseDown);
+        off(ref.current, "touchstart", onTouchStart);
       };
     } else {
       return undefined;

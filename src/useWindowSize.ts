@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import useRafState from './useRafState';
-import { isBrowser, off, on } from './misc/util';
+import useRafState from "./useRafState";
+import { isBrowser, off, on } from "./misc/util";
 
 const useWindowSize = (initialWidth = Infinity, initialHeight = Infinity) => {
   const [state, setState] = useRafState<{ width: number; height: number }>({
@@ -18,10 +18,10 @@ const useWindowSize = (initialWidth = Infinity, initialHeight = Infinity) => {
         });
       };
 
-      on(window, 'resize', handler);
+      on(window, "resize", handler);
 
       return () => {
-        off(window, 'resize', handler);
+        off(window, "resize", handler);
       };
     }
   }, []);

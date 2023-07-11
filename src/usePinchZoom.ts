@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useMemo, useState } from 'react';
+import { RefObject, useEffect, useMemo, useState } from "react";
 
 export type CacheRef = {
   prevDiff: number;
@@ -6,8 +6,8 @@ export type CacheRef = {
 };
 
 export enum ZoomState {
-  'ZOOMING_IN' = 'ZOOMING_IN',
-  'ZOOMING_OUT' = 'ZOOMING_OUT',
+  "ZOOMING_IN" = "ZOOMING_IN",
+  "ZOOMING_OUT" = "ZOOMING_OUT",
 }
 
 export type ZoomStateType = ZoomState.ZOOMING_IN | ZoomState.ZOOMING_OUT;

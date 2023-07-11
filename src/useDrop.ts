@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { noop, off, on } from './misc/util';
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { noop, off, on } from "./misc/util";
 
 export interface DropAreaState {
   over: boolean;
@@ -20,7 +20,7 @@ export interface DropAreaOptions {
 }
 
 const createProcess = (options: DropAreaOptions) => (dataTransfer: DataTransfer, event) => {
-  const uri = dataTransfer.getData('text/uri-list');
+  const uri = dataTransfer.getData("text/uri-list");
 
   if (uri) {
     (options.onUri || noop)(uri, event);
@@ -33,7 +33,7 @@ const createProcess = (options: DropAreaOptions) => (dataTransfer: DataTransfer,
   }
 
   if (event.clipboardData) {
-    const text = event.clipboardData.getData('text');
+    const text = event.clipboardData.getData("text");
     (options.onText || noop)(text, event);
     return;
   }
@@ -74,22 +74,22 @@ const useDrop = (options: DropAreaOptions = {}, args = []): DropAreaState => {
       process(event.clipboardData, event);
     };
 
-    on(document, 'dragover', onDragOver);
-    on(document, 'dragenter', onDragEnter);
-    on(document, 'dragleave', onDragLeave);
-    on(document, 'dragexit', onDragExit);
-    on(document, 'drop', onDrop);
+    on(document, "dragover", onDragOver);
+    on(document, "dragenter", onDragEnter);
+    on(document, "dragleave", onDragLeave);
+    on(document, "dragexit", onDragExit);
+    on(document, "drop", onDrop);
     if (onText) {
-      on(document, 'paste', onPaste);
+      on(document, "paste", onPaste);
     }
 
     return () => {
-      off(document, 'dragover', onDragOver);
-      off(document, 'dragenter', onDragEnter);
-      off(document, 'dragleave', onDragLeave);
-      off(document, 'dragexit', onDragExit);
-      off(document, 'drop', onDrop);
-      off(document, 'paste', onPaste);
+      off(document, "dragover", onDragOver);
+      off(document, "dragenter", onDragEnter);
+      off(document, "dragleave", onDragLeave);
+      off(document, "dragexit", onDragExit);
+      off(document, "drop", onDrop);
+      off(document, "paste", onPaste);
     };
   }, [process, ...args]);
 

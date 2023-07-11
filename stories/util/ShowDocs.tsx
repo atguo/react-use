@@ -1,20 +1,20 @@
-import * as React from 'react';
+import * as React from "react";
 
 const h = React.createElement;
 
 const ShowDocs = (props) => {
   return h(
-    'div',
+    "div",
     {},
-    h('div', {
+    h("div", {
       style: {
-        padding: '0 20px',
+        padding: "0 20px",
       },
       dangerouslySetInnerHTML: {
         __html: props.md.default,
       },
     }),
-    h('style', {
+    h("style", {
       dangerouslySetInnerHTML: {
         __html: `
 @import url(https://fonts.googleapis.com/css?family=Merriweather:300italic,300);

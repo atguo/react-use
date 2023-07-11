@@ -1,10 +1,10 @@
-import { renderHook } from '@testing-library/react-hooks';
-import useLongPress from '../src/useLongPress';
+import { renderHook } from "@testing-library/react-hooks";
+import useLongPress from "../src/useLongPress";
 
 const callback = jest.fn();
 const defaultDelay = 300;
-const mouseDown = new MouseEvent('mousedown');
-const touchStart = new TouchEvent('touchstart');
+const mouseDown = new MouseEvent("mousedown");
+const touchStart = new TouchEvent("touchstart");
 
 beforeAll(() => {
   jest.useFakeTimers();
@@ -19,7 +19,7 @@ afterAll(() => {
   jest.useRealTimers();
 });
 
-it('should not call provided callback without trigger any event', () => {
+it("should not call provided callback without trigger any event", () => {
   renderHook(() => useLongPress(callback));
 
   expect(callback).toHaveBeenCalledTimes(0);
@@ -29,7 +29,7 @@ it('should not call provided callback without trigger any event', () => {
   expect(callback).toHaveBeenCalledTimes(0);
 });
 
-it('should call provided callback onMouseDown', () => {
+it("should call provided callback onMouseDown", () => {
   const { result } = renderHook(() => useLongPress(callback));
   const { onMouseDown } = result.current;
 
@@ -43,7 +43,7 @@ it('should call provided callback onMouseDown', () => {
   expect(callback).toHaveBeenCalledTimes(1);
 });
 
-it('should call provided callback with custom delay', () => {
+it("should call provided callback with custom delay", () => {
   const customDelay = 1000;
   const { result } = renderHook(() => useLongPress(callback, { delay: customDelay }));
   const { onMouseDown } = result.current;
@@ -58,7 +58,7 @@ it('should call provided callback with custom delay', () => {
   expect(callback).toHaveBeenCalledTimes(1);
 });
 
-it('should not call provided callback if interrupted by onMouseLeave', () => {
+it("should not call provided callback if interrupted by onMouseLeave", () => {
   const { result } = renderHook(() => useLongPress(callback));
   const { onMouseDown, onMouseLeave } = result.current;
 
@@ -75,7 +75,7 @@ it('should not call provided callback if interrupted by onMouseLeave', () => {
   expect(setTimeout).toHaveBeenCalledTimes(1);
 });
 
-it('should not call provided callback if interrupted by onMouseUp', () => {
+it("should not call provided callback if interrupted by onMouseUp", () => {
   const { result } = renderHook(() => useLongPress(callback));
   const { onMouseDown, onMouseUp } = result.current;
 
@@ -92,7 +92,7 @@ it('should not call provided callback if interrupted by onMouseUp', () => {
   expect(setTimeout).toHaveBeenCalledTimes(1);
 });
 
-it('should call provided callback onTouchStart', () => {
+it("should call provided callback onTouchStart", () => {
   const { result } = renderHook(() => useLongPress(callback));
   const { onTouchStart } = result.current;
 
@@ -106,7 +106,7 @@ it('should call provided callback onTouchStart', () => {
   expect(callback).toHaveBeenCalledTimes(1);
 });
 
-it('should not call provided callback if interrupted by onTouchEnd', () => {
+it("should not call provided callback if interrupted by onTouchEnd", () => {
   const { result } = renderHook(() => useLongPress(callback));
   const { onTouchStart, onTouchEnd } = result.current;
 

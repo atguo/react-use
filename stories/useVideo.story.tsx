@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useVideo } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useVideo } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [video, state, controls, ref] = useVideo(
@@ -28,6 +28,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('UI/useVideo', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useVideo.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("UI/useVideo", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useVideo.md")} />)
+  .add("Demo", () => <Demo />);

@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useMouse } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useMouse } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const ref = React.useRef(null);
@@ -15,18 +15,18 @@ const Demo = () => {
       <div
         ref={ref}
         style={{
-          position: 'relative',
-          width: '400px',
-          height: '400px',
-          backgroundColor: 'whitesmoke',
+          position: "relative",
+          width: "400px",
+          height: "400px",
+          backgroundColor: "whitesmoke",
         }}>
         <span
           style={{
-            position: 'absolute',
+            position: "absolute",
             left: `${state.elX}px`,
             top: `${state.elY}px`,
-            pointerEvents: 'none',
-            transform: 'scale(4)',
+            pointerEvents: "none",
+            transform: "scale(4)",
           }}>
           🐭
         </span>
@@ -35,6 +35,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Sensors/useMouse', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useMouse.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Sensors/useMouse", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useMouse.md")} />)
+  .add("Demo", () => <Demo />);

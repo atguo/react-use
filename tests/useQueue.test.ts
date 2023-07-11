@@ -1,9 +1,9 @@
-import { act, renderHook } from '@testing-library/react-hooks';
-import useQueue from '../src/useQueue';
+import { act, renderHook } from "@testing-library/react-hooks";
+import useQueue from "../src/useQueue";
 
 const setUp = (initialQueue?: any[]) => renderHook(() => useQueue(initialQueue));
 
-it('takes initial state', () => {
+it("takes initial state", () => {
   const { result } = setUp([1, 2, 3]);
   const { first, last, size } = result.current;
   expect(first).toEqual(1);
@@ -11,7 +11,7 @@ it('takes initial state', () => {
   expect(size).toEqual(3);
 });
 
-it('appends new member', () => {
+it("appends new member", () => {
   const { result } = setUp([1, 2]);
   act(() => {
     result.current.add(3);
@@ -22,7 +22,7 @@ it('appends new member', () => {
   expect(size).toEqual(3);
 });
 
-it('pops oldest member', () => {
+it("pops oldest member", () => {
   const { result } = setUp([1, 2]);
   act(() => {
     result.current.remove();

@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useHarmonicIntervalFn, useInterval, useTimeoutFn } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useHarmonicIntervalFn, useInterval, useTimeoutFn } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Clock = ({
   useInt,
@@ -17,17 +17,17 @@ const Clock = ({
   let m: number | string = Math.floor(count / 60);
   let s: number | string = count % 60;
 
-  m = m < 10 ? '0' + m : String(m);
-  s = s < 10 ? '0' + s : String(s);
+  m = m < 10 ? "0" + m : String(m);
+  s = s < 10 ? "0" + s : String(s);
 
   const style: React.CSSProperties = {
-    padding: '20px 5px',
-    border: '1px solid #fafafa',
-    float: 'left',
-    fontFamily: 'monospace',
+    padding: "20px 5px",
+    border: "1px solid #fafafa",
+    float: "left",
+    fontFamily: "monospace",
   };
 
-  return <div style={style}>{m + ':' + s}</div>;
+  return <div style={style}>{m + ":" + s}</div>;
 };
 
 const Demo = ({ useInt }: { children?: React.ReactNode; useInt: typeof useHarmonicIntervalFn }) => {
@@ -37,15 +37,15 @@ const Demo = ({ useInt }: { children?: React.ReactNode; useInt: typeof useHarmon
   }, 500);
 
   const headingStyle: React.CSSProperties = {
-    fontFamily: 'sans',
-    fontSize: '20px',
-    padding: '0',
-    lineHeight: '1.5em',
+    fontFamily: "sans",
+    fontSize: "20px",
+    padding: "0",
+    lineHeight: "1.5em",
   };
 
   const rowStyle: React.CSSProperties = {
-    width: '100%',
-    clear: 'both',
+    width: "100%",
+    clear: "both",
   };
 
   return (
@@ -59,9 +59,9 @@ const Demo = ({ useInt }: { children?: React.ReactNode; useInt: typeof useHarmon
   );
 };
 
-storiesOf('Animation/useHarmonicIntervalFn', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useHarmonicIntervalFn.md')} />)
-  .add('Demo', () => (
+storiesOf("Animation/useHarmonicIntervalFn", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useHarmonicIntervalFn.md")} />)
+  .add("Demo", () => (
     <>
       <Demo useInt={useInterval} />
       <br />

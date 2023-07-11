@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
 
-import { createStateContext } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { createStateContext } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
-const [useSharedText, SharedTextProvider] = createStateContext('');
+const [useSharedText, SharedTextProvider] = createStateContext("");
 
 const ComponentA = () => {
   const [text, setText] = useSharedText();
@@ -38,6 +38,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('State/createStateContext', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/createStateContext.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/createStateContext", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/createStateContext.md")} />)
+  .add("Demo", () => <Demo />);

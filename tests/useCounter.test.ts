@@ -1,10 +1,10 @@
-import { act, renderHook } from '@testing-library/react-hooks';
-import useCounter from '../src/useCounter';
+import { act, renderHook } from "@testing-library/react-hooks";
+import useCounter from "../src/useCounter";
 
 const setUp = (initialValue?: number, max: number | null = null, min: number | null = null) =>
   renderHook(() => useCounter(initialValue, max, min));
 
-it('should init counter and utils', () => {
+it("should init counter and utils", () => {
   const { result } = setUp(5);
 
   expect(result.current[0]).toBe(5);
@@ -17,26 +17,26 @@ it('should init counter and utils', () => {
   });
 });
 
-it('should init counter to 0 if not initial value received', () => {
+it("should init counter to 0 if not initial value received", () => {
   const { result } = setUp();
 
   expect(result.current[0]).toBe(0);
 });
 
-it('should init counter to negative number', () => {
+it("should init counter to negative number", () => {
   const { result } = setUp(-2);
 
   expect(result.current[0]).toBe(-2);
 });
 
-it('should get current counter', () => {
+it("should get current counter", () => {
   const { result } = setUp(5);
   const { get } = result.current[1];
 
   expect(get()).toBe(5);
 });
 
-it('should increment by 1 if not value received', () => {
+it("should increment by 1 if not value received", () => {
   const { result } = setUp(5);
   const { get, inc } = result.current[1];
 
@@ -46,7 +46,7 @@ it('should increment by 1 if not value received', () => {
   expect(get()).toBe(6);
 });
 
-it('should increment by value received', () => {
+it("should increment by value received", () => {
   const { result } = setUp(5);
   const { get, inc } = result.current[1];
 
@@ -56,7 +56,7 @@ it('should increment by value received', () => {
   expect(get()).toBe(14);
 });
 
-it('should decrement by 1 if not value received', () => {
+it("should decrement by 1 if not value received", () => {
   const { result } = setUp(5);
   const { get, dec } = result.current[1];
 
@@ -66,7 +66,7 @@ it('should decrement by 1 if not value received', () => {
   expect(get()).toBe(4);
 });
 
-it('should decrement by value received', () => {
+it("should decrement by value received", () => {
   const { result } = setUp(5);
   const { get, dec } = result.current[1];
 
@@ -76,7 +76,7 @@ it('should decrement by value received', () => {
   expect(get()).toBe(-4);
 });
 
-it('should set to value received', () => {
+it("should set to value received", () => {
   const { result } = setUp(5);
   const { get, set } = result.current[1];
 
@@ -86,7 +86,7 @@ it('should set to value received', () => {
   expect(get()).toBe(17);
 });
 
-it('should reset to original value', () => {
+it("should reset to original value", () => {
   const { result } = setUp(5);
   const { get, set, reset } = result.current[1];
 
@@ -100,7 +100,7 @@ it('should reset to original value', () => {
   expect(get()).toBe(5);
 });
 
-it('should reset and set new original value', () => {
+it("should reset and set new original value", () => {
   const { result } = setUp(5);
   const { get, set, reset } = result.current[1];
 
@@ -122,7 +122,7 @@ it('should reset and set new original value', () => {
   expect(get()).toBe(8);
 });
 
-it('should not exceed max value', () => {
+it("should not exceed max value", () => {
   const { result } = setUp(10, 5);
   expect(result.current[0]).toBe(5);
 
@@ -141,7 +141,7 @@ it('should not exceed max value', () => {
   expect(get()).toBe(5);
 });
 
-it('should not exceed min value', () => {
+it("should not exceed min value", () => {
   const { result } = setUp(3, null, 5);
   expect(result.current[0]).toBe(5);
 
@@ -160,47 +160,47 @@ it('should not exceed min value', () => {
   expect(get()).toBe(5);
 });
 
-describe('should `console.error` on unexpected inputs', () => {
-  it('on any of call parameters', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+describe("should `console.error` on unexpected inputs", () => {
+  it("on any of call parameters", () => {
+    const spy = jest.spyOn(console, "error").mockImplementation(() => {});
 
     // @ts-ignore
     setUp(false);
-    expect(spy.mock.calls[0][0]).toBe('initialValue has to be a number, got boolean');
+    expect(spy.mock.calls[0][0]).toBe("initialValue has to be a number, got boolean");
 
     // @ts-ignore
     setUp(10, false);
-    expect(spy.mock.calls[1][0]).toBe('max has to be a number, got boolean');
+    expect(spy.mock.calls[1][0]).toBe("max has to be a number, got boolean");
 
     // @ts-ignore
     setUp(10, 5, {});
-    expect(spy.mock.calls[2][0]).toBe('min has to be a number, got object');
+    expect(spy.mock.calls[2][0]).toBe("min has to be a number, got object");
 
     spy.mockRestore();
   });
 
-  it('on any of returned methods has unexpected input', () => {
+  it("on any of returned methods has unexpected input", () => {
     const { result } = setUp(10);
     const { inc, dec, reset } = result.current[1];
 
-    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    const spy = jest.spyOn(console, "error").mockImplementation(() => {});
 
     // @ts-ignore
     act(() => inc(false));
     expect(spy.mock.calls[0][0]).toBe(
-      'delta has to be a number or function returning a number, got boolean'
+      "delta has to be a number or function returning a number, got boolean"
     );
 
     // @ts-ignore
     act(() => dec(false));
     expect(spy.mock.calls[1][0]).toBe(
-      'delta has to be a number or function returning a number, got boolean'
+      "delta has to be a number or function returning a number, got boolean"
     );
 
     // @ts-ignore
     act(() => reset({}));
     expect(spy.mock.calls[2][0]).toBe(
-      'value has to be a number or function returning a number, got object'
+      "value has to be a number or function returning a number, got object"
     );
 
     spy.mockRestore();

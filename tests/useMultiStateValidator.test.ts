@@ -1,12 +1,12 @@
-import { act, renderHook, RenderHookResult } from '@testing-library/react-hooks';
-import { useState } from 'react';
-import { MultiStateValidator, useMultiStateValidator } from '../src/useMultiStateValidator';
-import { UseStateValidatorReturn, ValidityState } from '../src/useStateValidator';
+import { act, renderHook, RenderHookResult } from "@testing-library/react-hooks";
+import { useState } from "react";
+import { MultiStateValidator, useMultiStateValidator } from "../src/useMultiStateValidator";
+import { UseStateValidatorReturn, ValidityState } from "../src/useStateValidator";
 
 interface Mock extends jest.Mock {}
 
-describe('useMultiStateValidator', () => {
-  it('should be defined', () => {
+describe("useMultiStateValidator", () => {
+  it("should be defined", () => {
     expect(useMultiStateValidator).toBeDefined();
   });
 
@@ -39,7 +39,7 @@ describe('useMultiStateValidator', () => {
     ];
   }
 
-  it('should return an array of two elements', () => {
+  it("should return an array of two elements", () => {
     const [, hook] = getHook();
     const res = hook.result.current[1];
 
@@ -47,13 +47,13 @@ describe('useMultiStateValidator', () => {
     expect(res.length).toBe(2);
   });
 
-  it('should call validator on init', () => {
+  it("should call validator on init", () => {
     const [spy] = getHook();
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should call validator on any of states changed', () => {
+  it("should call validator on any of states changed", () => {
     const [spy, hook] = getHook();
 
     expect(spy).toHaveBeenCalledTimes(1);
@@ -72,7 +72,7 @@ describe('useMultiStateValidator', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should throw if states is not an object', () => {
+  it("should throw if states is not an object", () => {
     expect(() => {
       // @ts-ignore
       const [, hook] = getHook(defaultStatesValidator, 123);
@@ -80,10 +80,10 @@ describe('useMultiStateValidator', () => {
       if (hook.result.error) {
         throw hook.result.error;
       }
-    }).toThrowError('states expected to be an object or array, got number');
+    }).toThrowError("states expected to be an object or array, got number");
   });
 
-  it('first returned element should represent current validity state', () => {
+  it("first returned element should represent current validity state", () => {
     const [, hook] = getHook();
     let [setState, [validity]] = hook.result.current;
     expect(validity).toEqual([false]);
@@ -97,7 +97,7 @@ describe('useMultiStateValidator', () => {
     expect(validity).toEqual([false]);
   });
 
-  it('second returned element should re-call validation', () => {
+  it("second returned element should re-call validation", () => {
     const [spy, hook] = getHook();
     const [, [, revalidate]] = hook.result.current;
 
@@ -106,7 +106,7 @@ describe('useMultiStateValidator', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
-  it('validator should receive states as a firs argument', () => {
+  it("validator should receive states as a firs argument", () => {
     const [spy, hook] = getHook();
     const [setState] = hook.result.current;
 
@@ -116,7 +116,7 @@ describe('useMultiStateValidator', () => {
     expect((spy as Mock).mock.calls[1][0]).toEqual([4, 6]);
   });
 
-  it('if validator expects 2nd parameters it should pass a validity setter there', () => {
+  it("if validator expects 2nd parameters it should pass a validity setter there", () => {
     const spy = jest.fn((states: number[], done) => {
       done([states.every((num) => !!(num % 2))]);
     }) as unknown as MultiStateValidator<[boolean], number[]>;

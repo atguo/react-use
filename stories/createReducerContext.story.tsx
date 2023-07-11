@@ -1,16 +1,16 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
 
-import { createReducerContext } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { createReducerContext } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
-type Action = 'increment' | 'decrement';
+type Action = "increment" | "decrement";
 
 const reducer = (state: number, action: Action) => {
   switch (action) {
-    case 'increment':
+    case "increment":
       return state + 1;
-    case 'decrement':
+    case "decrement":
       return state - 1;
     default:
       throw new Error();
@@ -24,11 +24,11 @@ const ComponentA = () => {
   return (
     <p>
       Component A &nbsp;
-      <button type="button" onClick={() => dispatch('decrement')}>
+      <button type="button" onClick={() => dispatch("decrement")}>
         -
       </button>
       &nbsp;{count}&nbsp;
-      <button type="button" onClick={() => dispatch('increment')}>
+      <button type="button" onClick={() => dispatch("increment")}>
         +
       </button>
     </p>
@@ -40,11 +40,11 @@ const ComponentB = () => {
   return (
     <p>
       Component B &nbsp;
-      <button type="button" onClick={() => dispatch('decrement')}>
+      <button type="button" onClick={() => dispatch("decrement")}>
         -
       </button>
       &nbsp;{count}&nbsp;
-      <button type="button" onClick={() => dispatch('increment')}>
+      <button type="button" onClick={() => dispatch("increment")}>
         +
       </button>
     </p>
@@ -61,6 +61,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('State/createReducerContext', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/createReducerContext.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/createReducerContext", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/createReducerContext.md")} />)
+  .add("Demo", () => <Demo />);

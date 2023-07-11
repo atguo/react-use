@@ -1,5 +1,5 @@
-import { renderHook } from '@testing-library/react-hooks';
-import useEvent, { ListenerType1, ListenerType2 } from '../src/useEvent';
+import { renderHook } from "@testing-library/react-hooks";
+import useEvent, { ListenerType1, ListenerType2 } from "../src/useEvent";
 
 interface Props {
   name: string;
@@ -10,22 +10,22 @@ interface Props {
 
 const propsList1 = [
   {
-    name: 'name1',
+    name: "name1",
     handler: () => {},
     target: {
       addEventListener: jest.fn(),
       removeEventListener: jest.fn(),
     },
-    options: { a: 'opt1' },
+    options: { a: "opt1" },
   },
   {
-    name: 'name2',
+    name: "name2",
     handler: () => {},
     target: {
       addEventListener: jest.fn(),
       removeEventListener: jest.fn(),
     },
-    options: { a: 'opt2' },
+    options: { a: "opt2" },
   },
 ];
 
@@ -46,20 +46,20 @@ const propsList2 = [
   },
 ];
 
-it('should call addEventListener/removeEventListener on mount/unmount', () => {
-  checkOnMountAndUnmount(propsList1[0], 'addEventListener', 'removeEventListener');
+it("should call addEventListener/removeEventListener on mount/unmount", () => {
+  checkOnMountAndUnmount(propsList1[0], "addEventListener", "removeEventListener");
 });
 
-it('should call on/off on mount/unmount', () => {
-  checkOnMountAndUnmount(propsList2[0], 'on', 'off');
+it("should call on/off on mount/unmount", () => {
+  checkOnMountAndUnmount(propsList2[0], "on", "off");
 });
 
-it('should call addEventListener/removeEventListener on deps changes', () => {
-  checkOnDepsChanges(propsList1[0], propsList1[1], 'addEventListener', 'removeEventListener');
+it("should call addEventListener/removeEventListener on deps changes", () => {
+  checkOnDepsChanges(propsList1[0], propsList1[1], "addEventListener", "removeEventListener");
 });
 
-it('should call on/off on deps changes', () => {
-  checkOnDepsChanges(propsList2[0], propsList2[1], 'on', 'off');
+it("should call on/off on deps changes", () => {
+  checkOnDepsChanges(propsList2[0], propsList2[1], "on", "off");
 });
 
 const checkOnMountAndUnmount = (
@@ -143,7 +143,7 @@ const checkOnDepsChanges = (
     name: props2.name,
     handler: props2.handler,
     target: props1.target,
-    options: { a: 'opt1' },
+    options: { a: "opt1" },
   });
   expect(props1.target[removeEventListenerName]).toHaveBeenCalledTimes(2);
 

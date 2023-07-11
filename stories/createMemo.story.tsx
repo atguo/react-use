@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { createMemo } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { createMemo } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const fibonacci = (n) => {
   if (n === 0) {
@@ -21,6 +21,6 @@ const Demo = () => {
   return <div>fib(10) = {result}</div>;
 };
 
-storiesOf('State/createMemo', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/createMemo.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/createMemo", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/createMemo.md")} />)
+  .add("Demo", () => <Demo />);

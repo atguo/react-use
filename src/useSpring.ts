@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Spring, SpringSystem } from 'rebound';
+import { useEffect, useMemo, useState } from "react";
+import { Spring, SpringSystem } from "rebound";
 
 const useSpring = (targetValue: number = 0, tension: number = 50, friction: number = 3) => {
   const [spring, setSpring] = useState<Spring | null>(null);

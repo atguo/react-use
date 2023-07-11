@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
-import { isBrowser, off, on } from '../misc/util';
+import { useEffect, useMemo, useState } from "react";
+import { isBrowser, off, on } from "../misc/util";
 
 const createBreakpoint =
   (breakpoints: { [name: string]: number } = { laptopL: 1440, laptop: 1024, tablet: 768 }) =>
@@ -11,9 +11,9 @@ const createBreakpoint =
         setScreen(window.innerWidth);
       };
       setSideScreen();
-      on(window, 'resize', setSideScreen);
+      on(window, "resize", setSideScreen);
       return () => {
-        off(window, 'resize', setSideScreen);
+        off(window, "resize", setSideScreen);
       };
     });
     const sortedBreakpoints = useMemo(

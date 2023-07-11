@@ -1,14 +1,14 @@
-import { RefObject, useEffect, useRef } from 'react';
-import { isBrowser, off, on } from './misc/util';
+import { RefObject, useEffect, useRef } from "react";
+import { isBrowser, off, on } from "./misc/util";
 
 export function getClosestBody(
   el: Element | HTMLElement | HTMLIFrameElement | null
 ): HTMLElement | null {
   if (!el) {
     return null;
-  } else if (el.tagName === 'BODY') {
+  } else if (el.tagName === "BODY") {
     return el as HTMLElement;
-  } else if (el.tagName === 'IFRAME') {
+  } else if (el.tagName === "IFRAME") {
     const document = (el as HTMLIFrameElement).contentDocument;
     return document ? document.body : null;
   } else if (!(el as HTMLElement).offsetParent) {
@@ -30,7 +30,7 @@ function preventDefault(rawEvent: TouchEvent): boolean {
 
 export interface BodyInfoItem {
   counter: number;
-  initialOverflow: CSSStyleDeclaration['overflow'];
+  initialOverflow: CSSStyleDeclaration["overflow"];
 }
 
 const isIosDevice =
@@ -41,7 +41,7 @@ const isIosDevice =
 
 const bodies: Map<HTMLElement, BodyInfoItem> = new Map();
 
-const doc: Document | undefined = typeof document === 'object' ? document : undefined;
+const doc: Document | undefined = typeof document === "object" ? document : undefined;
 
 let documentListenerAdded = false;
 
@@ -57,12 +57,12 @@ export default !doc
           bodies.set(body, { counter: 1, initialOverflow: body.style.overflow });
           if (isIosDevice) {
             if (!documentListenerAdded) {
-              on(document, 'touchmove', preventDefault, { passive: false });
+              on(document, "touchmove", preventDefault, { passive: false });
 
               documentListenerAdded = true;
             }
           } else {
-            body.style.overflow = 'hidden';
+            body.style.overflow = "hidden";
           }
         } else {
           bodies.set(body, {
@@ -81,7 +81,7 @@ export default !doc
               body.ontouchmove = null;
 
               if (documentListenerAdded) {
-                off(document, 'touchmove', preventDefault);
+                off(document, "touchmove", preventDefault);
                 documentListenerAdded = false;
               }
             } else {

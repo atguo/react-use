@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { off, on } from './misc/util';
+import { useEffect, useState } from "react";
+import { off, on } from "./misc/util";
 
 export interface OrientationState {
   angle: number;
@@ -8,7 +8,7 @@ export interface OrientationState {
 
 const defaultState: OrientationState = {
   angle: 0,
-  type: 'landscape-primary',
+  type: "landscape-primary",
 };
 
 const useOrientation = (initialState: OrientationState = defaultState) => {
@@ -27,8 +27,8 @@ const useOrientation = (initialState: OrientationState = defaultState) => {
           setState({ angle, type });
         } else if (window.orientation !== undefined) {
           setState({
-            angle: typeof window.orientation === 'number' ? window.orientation : 0,
-            type: '',
+            angle: typeof window.orientation === "number" ? window.orientation : 0,
+            type: "",
           });
         } else {
           setState(initialState);
@@ -36,12 +36,12 @@ const useOrientation = (initialState: OrientationState = defaultState) => {
       }
     };
 
-    on(window, 'orientationchange', onChange);
+    on(window, "orientationchange", onChange);
     onChange();
 
     return () => {
       mounted = false;
-      off(window, 'orientationchange', onChange);
+      off(window, "orientationchange", onChange);
     };
   }, []);
 

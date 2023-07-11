@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { isNavigator, off, on } from './misc/util';
-import isDeepEqual from './misc/isDeepEqual';
+import { useEffect, useState } from "react";
+import { isNavigator, off, on } from "./misc/util";
+import isDeepEqual from "./misc/isDeepEqual";
 
 export interface BatteryState {
   charging: boolean;
@@ -26,7 +26,7 @@ type UseBatteryState =
   | (BatteryState & { isSupported: true; fetched: true }); // battery API supported and fetched
 
 const nav: NavigatorWithPossibleBattery | undefined = isNavigator ? navigator : undefined;
-const isBatteryApiSupported = nav && typeof nav.getBattery === 'function';
+const isBatteryApiSupported = nav && typeof nav.getBattery === "function";
 
 function useBatteryMock(): UseBatteryState {
   return { isSupported: false };
@@ -59,20 +59,20 @@ function useBattery(): UseBatteryState {
         return;
       }
       battery = bat;
-      on(battery, 'chargingchange', handleChange);
-      on(battery, 'chargingtimechange', handleChange);
-      on(battery, 'dischargingtimechange', handleChange);
-      on(battery, 'levelchange', handleChange);
+      on(battery, "chargingchange", handleChange);
+      on(battery, "chargingtimechange", handleChange);
+      on(battery, "dischargingtimechange", handleChange);
+      on(battery, "levelchange", handleChange);
       handleChange();
     });
 
     return () => {
       isMounted = false;
       if (battery) {
-        off(battery, 'chargingchange', handleChange);
-        off(battery, 'chargingtimechange', handleChange);
-        off(battery, 'dischargingtimechange', handleChange);
-        off(battery, 'levelchange', handleChange);
+        off(battery, "chargingchange", handleChange);
+        off(battery, "chargingtimechange", handleChange);
+        off(battery, "dischargingtimechange", handleChange);
+        off(battery, "levelchange", handleChange);
       }
     };
   }, []);

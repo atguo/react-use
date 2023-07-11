@@ -1,7 +1,7 @@
-import useList, { ListActions } from './useList';
-import { IHookStateInitAction } from './misc/hookState';
+import useList, { ListActions } from "./useList";
+import { IHookStateInitAction } from "./misc/hookState";
 
-export interface UpsertListActions<T> extends Omit<ListActions<T>, 'upsert'> {
+export interface UpsertListActions<T> extends Omit<ListActions<T>, "upsert"> {
   upsert: (newItem: T) => void;
 }
 

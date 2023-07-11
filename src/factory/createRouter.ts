@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export interface RouterProviderProps {
   route: string;
@@ -8,7 +8,7 @@ export interface RouterProviderProps {
 
 const createRouter = () => {
   const context = React.createContext<RouterProviderProps>({
-    route: '',
+    route: "",
   });
 
   // not sure if this supposed to be unused, ignoring ts error for now
@@ -16,9 +16,9 @@ const createRouter = () => {
   const Router: React.SFC<RouterProviderProps> = (props) => {
     const { route, fullRoute, parent, children } = props;
 
-    if (process.env.NODE_ENV !== 'production') {
-      if (typeof route !== 'string') {
-        throw new TypeError('Router route must be a string.');
+    if (process.env.NODE_ENV !== "production") {
+      if (typeof route !== "string") {
+        throw new TypeError("Router route must be a string.");
       }
     }
 

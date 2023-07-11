@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 /**
  * @desc Made compatible with {GeolocationPositionError} and {PositionError} cause

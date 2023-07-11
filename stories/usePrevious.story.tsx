@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { usePrevious } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { usePrevious } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [count, setCount] = React.useState(0);
@@ -18,6 +18,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('State/usePrevious', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/usePrevious.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/usePrevious", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/usePrevious.md")} />)
+  .add("Demo", () => <Demo />);

@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useRafLoop, useUpdate } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useRafLoop, useUpdate } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [ticks, setTicks] = React.useState(0);
@@ -23,12 +23,12 @@ const Demo = () => {
           isActive() ? loopStop() : loopStart();
           update();
         }}>
-        {isActive() ? 'STOP' : 'START'}
+        {isActive() ? "STOP" : "START"}
       </button>
     </div>
   );
 };
 
-storiesOf('Side effects/useRafLoop', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useRafLoop.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Side effects/useRafLoop", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useRafLoop.md")} />)
+  .add("Demo", () => <Demo />);

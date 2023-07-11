@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { useError } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import { useError } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
   constructor(props) {
@@ -31,15 +31,15 @@ const Demo = () => {
   const dispatchError = useError();
 
   const clickHandler = () => {
-    dispatchError(new Error('Some error!'));
+    dispatchError(new Error("Some error!"));
   };
 
   return <button onClick={clickHandler}>Click me to throw</button>;
 };
 
-storiesOf('Side effects/useError', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useError.md')} />)
-  .add('Demo', () => (
+storiesOf("Side effects/useError", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useError.md")} />)
+  .add("Demo", () => (
     <ErrorBoundary>
       <Demo />
     </ErrorBoundary>

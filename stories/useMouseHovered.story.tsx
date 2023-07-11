@@ -1,8 +1,8 @@
-import { boolean, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useMouseHovered } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { boolean, withKnobs } from "@storybook/addon-knobs";
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useMouseHovered } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = ({ whenHovered, bound }: any) => {
   const ref = React.useRef(null);
@@ -16,18 +16,18 @@ const Demo = ({ whenHovered, bound }: any) => {
       <div
         ref={ref}
         style={{
-          position: 'relative',
-          width: '400px',
-          height: '400px',
-          backgroundColor: 'whitesmoke',
+          position: "relative",
+          width: "400px",
+          height: "400px",
+          backgroundColor: "whitesmoke",
         }}>
         <span
           style={{
-            position: 'absolute',
+            position: "absolute",
             left: `${state.elX}px`,
             top: `${state.elY}px`,
-            pointerEvents: 'none',
-            transform: 'scale(4)',
+            pointerEvents: "none",
+            transform: "scale(4)",
           }}>
           🐭
         </span>
@@ -36,11 +36,11 @@ const Demo = ({ whenHovered, bound }: any) => {
   );
 };
 
-storiesOf('Sensors/useMouseHovered', module)
+storiesOf("Sensors/useMouseHovered", module)
   .addDecorator(withKnobs)
-  .add('Docs', () => <ShowDocs md={require('../docs/useMouse.md')} />)
-  .add('Demo', () => {
-    const bound = boolean('bound', false);
-    const whenHovered = boolean('whenHovered', false);
+  .add("Docs", () => <ShowDocs md={require("../docs/useMouse.md")} />)
+  .add("Demo", () => {
+    const bound = boolean("bound", false);
+    const whenHovered = boolean("whenHovered", false);
     return <Demo whenHovered={whenHovered} bound={bound} />;
   });

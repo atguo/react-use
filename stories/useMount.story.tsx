@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useMount } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useMount } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
-  useMount(() => alert('MOUNTED'));
+  useMount(() => alert("MOUNTED"));
 
   return (
     <div>
@@ -13,6 +13,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Lifecycle/useMount', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useMount.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Lifecycle/useMount", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useMount.md")} />)
+  .add("Demo", () => <Demo />);

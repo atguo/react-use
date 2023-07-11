@@ -1,14 +1,14 @@
-import { renderHook } from '@testing-library/react-hooks';
-import useAudio from '../src/useAudio';
+import { renderHook } from "@testing-library/react-hooks";
+import useAudio from "../src/useAudio";
 const setUp = (
-  src: string = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+  src: string = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
   autoPlay: boolean = true
 ) => renderHook(() => useAudio({ src, autoPlay }));
 
-it('should init audio and utils', () => {
+it("should init audio and utils", () => {
   global.console.error = jest.fn();
 
-  const MOCK_AUDIO_SRC = 'MOCK_AUDIO_SRC';
+  const MOCK_AUDIO_SRC = "MOCK_AUDIO_SRC";
   const MOCK_AUTO_PLAY_STATE = true;
   const { result } = setUp(MOCK_AUDIO_SRC, MOCK_AUTO_PLAY_STATE);
   const [audio, state, controls, ref] = result.current;
@@ -16,7 +16,7 @@ it('should init audio and utils', () => {
   expect(console.error).toHaveBeenCalledTimes(1);
 
   // Test the audio comp
-  expect(audio.type).toBe('audio');
+  expect(audio.type).toBe("audio");
   expect(audio.props.src).toBe(MOCK_AUDIO_SRC);
   expect(audio.props.autoPlay).toBe(MOCK_AUTO_PLAY_STATE);
 
@@ -28,7 +28,7 @@ it('should init audio and utils', () => {
   expect(state.volume).toBe(1);
 
   // Test controls
-  ref.current = document.createElement('audio');
+  ref.current = document.createElement("audio");
   // Mock ref current for controls testing
 
   expect(ref.current.muted).toBe(false);

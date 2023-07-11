@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useLatest } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useLatest } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [count, setCount] = React.useState(0);
@@ -23,6 +23,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('State/useLatest', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useLatest.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/useLatest", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useLatest.md")} />)
+  .add("Demo", () => <Demo />);

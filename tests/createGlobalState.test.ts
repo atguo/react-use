@@ -1,12 +1,12 @@
-import { act, renderHook } from '@testing-library/react-hooks';
-import createGlobalState from '../src/factory/createGlobalState';
+import { act, renderHook } from "@testing-library/react-hooks";
+import createGlobalState from "../src/factory/createGlobalState";
 
-describe('useGlobalState', () => {
-  it('should be defined', () => {
+describe("useGlobalState", () => {
+  it("should be defined", () => {
     expect(createGlobalState).toBeDefined();
   });
 
-  it('both components should be updated', () => {
+  it("both components should be updated", () => {
     const useGlobalValue = createGlobalState(0);
     const { result: result1 } = renderHook(() => useGlobalValue());
     const { result: result2 } = renderHook(() => useGlobalValue());
@@ -19,7 +19,7 @@ describe('useGlobalState', () => {
     expect(result2.current[0]).toBe(1);
   });
 
-  it('allows setting state with function and previous value', () => {
+  it("allows setting state with function and previous value", () => {
     const useGlobalValue = createGlobalState(0);
     const { result: result1 } = renderHook(() => useGlobalValue());
     const { result: result2 } = renderHook(() => useGlobalValue());
@@ -32,7 +32,7 @@ describe('useGlobalState', () => {
     expect(result2.current[0]).toBe(1);
   });
 
-  it('allows setting state with function and no previous value', () => {
+  it("allows setting state with function and no previous value", () => {
     const useGlobalValue = createGlobalState(0);
     const { result: result1 } = renderHook(() => useGlobalValue());
     const { result: result2 } = renderHook(() => useGlobalValue());
@@ -45,7 +45,7 @@ describe('useGlobalState', () => {
     expect(result2.current[0]).toBe(1);
   });
 
-  it('initializes and updates with undefined', () => {
+  it("initializes and updates with undefined", () => {
     const useGlobalValue = createGlobalState<number>();
     const { result: result1 } = renderHook(() => useGlobalValue());
     const { result: result2 } = renderHook(() => useGlobalValue());
@@ -59,7 +59,7 @@ describe('useGlobalState', () => {
     expect(result2.current[0]).toBe(undefined);
   });
 
-  it('initializes with undefined and updates with different type', () => {
+  it("initializes with undefined and updates with different type", () => {
     const useGlobalValue = createGlobalState();
     const { result: result1 } = renderHook(() => useGlobalValue());
     const { result: result2 } = renderHook(() => useGlobalValue());
@@ -71,7 +71,7 @@ describe('useGlobalState', () => {
     });
   });
 
-  it('initializes with function', () => {
+  it("initializes with function", () => {
     const useGlobalValue = createGlobalState(() => 0);
     const { result: result1 } = renderHook(() => useGlobalValue());
     const { result: result2 } = renderHook(() => useGlobalValue());

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { isBrowser, off, on } from './misc/util';
+import * as React from "react";
+import { isBrowser, off, on } from "./misc/util";
 
 const { useState, useEffect, useRef } = React;
 
@@ -18,7 +18,7 @@ const useSize = (
 ): [React.ReactElement<any>, State] => {
   if (!isBrowser) {
     return [
-      typeof element === 'function' ? element({ width, height }) : element,
+      typeof element === "function" ? element({ width, height }) : element,
       { width, height },
     ];
   }
@@ -26,7 +26,7 @@ const useSize = (
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [state, setState] = useState<State>({ width, height });
 
-  if (typeof element === 'function') {
+  if (typeof element === "function") {
     element = element(state);
   }
 
@@ -46,7 +46,7 @@ const useSize = (
     setState(size);
   };
   const onWindow = (windowToListenOn: Window) => {
-    on(windowToListenOn, 'resize', setSize);
+    on(windowToListenOn, "resize", setSize);
     DRAF(setSize);
   };
 
@@ -64,37 +64,37 @@ const useSize = (
       onWindow(window);
     } else {
       const onLoad = () => {
-        on(iframe, 'load', onLoad);
+        on(iframe, "load", onLoad);
         window = iframe.contentWindow!;
         onWindow(window);
       };
 
-      off(iframe, 'load', onLoad);
+      off(iframe, "load", onLoad);
     }
 
     return () => {
       if (window && window.removeEventListener) {
-        off(window, 'resize', setSize);
+        off(window, "resize", setSize);
       }
     };
   }, []);
 
-  style.position = 'relative';
+  style.position = "relative";
 
   const sized = React.cloneElement(
     element,
     { style },
     ...[
-      React.createElement('iframe', {
+      React.createElement("iframe", {
         ref,
         style: {
-          background: 'transparent',
-          border: 'none',
-          height: '100%',
+          background: "transparent",
+          border: "none",
+          height: "100%",
           left: 0,
-          position: 'absolute',
+          position: "absolute",
           top: 0,
-          width: '100%',
+          width: "100%",
           zIndex: -1,
         },
       }),

@@ -1,5 +1,5 @@
-import { act, renderHook } from '@testing-library/react-hooks';
-import useGetSetState from '../src/useGetSetState';
+import { act, renderHook } from "@testing-library/react-hooks";
+import useGetSetState from "../src/useGetSetState";
 
 const originalConsoleError = console.error;
 const mockConsoleError = jest.fn();
@@ -18,98 +18,98 @@ beforeEach(() => {
   jest.useFakeTimers();
 });
 
-it('should init getter and setter', () => {
-  const { result } = setUp({ foo: 'initialValue' });
+it("should init getter and setter", () => {
+  const { result } = setUp({ foo: "initialValue" });
   const [get, set] = result.current;
 
   expect(get).toBeInstanceOf(Function);
   expect(set).toBeInstanceOf(Function);
 });
 
-it('should log an error if init with something different than an object', () => {
+it("should log an error if init with something different than an object", () => {
   expect(mockConsoleError).not.toHaveBeenCalled();
 
-  setUp('not an object');
+  setUp("not an object");
 
   expect(mockConsoleError).toHaveBeenCalledTimes(1);
-  expect(mockConsoleError).toHaveBeenCalledWith('useGetSetState initial state must be an object.');
+  expect(mockConsoleError).toHaveBeenCalledWith("useGetSetState initial state must be an object.");
 });
 
-it('should get current state', () => {
-  const { result } = setUp({ foo: 'a', bar: 'z' });
+it("should get current state", () => {
+  const { result } = setUp({ foo: "a", bar: "z" });
   const [get] = result.current;
 
   const currentState = get();
 
-  expect(currentState).toEqual({ foo: 'a', bar: 'z' });
+  expect(currentState).toEqual({ foo: "a", bar: "z" });
 });
 
-it('should set new state by applying patch with existing keys', () => {
-  const { result } = setUp({ foo: 'a', bar: 'z' });
+it("should set new state by applying patch with existing keys", () => {
+  const { result } = setUp({ foo: "a", bar: "z" });
   const [get, set] = result.current;
 
-  act(() => set({ bar: 'y' }));
+  act(() => set({ bar: "y" }));
 
   const currentState = get();
-  expect(currentState).toEqual({ foo: 'a', bar: 'y' });
+  expect(currentState).toEqual({ foo: "a", bar: "y" });
 });
 
-it('should set new state by applying patch with new keys', () => {
-  const { result } = setUp({ foo: 'a', bar: 'z' });
+it("should set new state by applying patch with new keys", () => {
+  const { result } = setUp({ foo: "a", bar: "z" });
   const [get, set] = result.current;
 
-  act(() => set({ qux: 'f' }));
+  act(() => set({ qux: "f" }));
 
   const currentState = get();
-  expect(currentState).toEqual({ foo: 'a', bar: 'z', qux: 'f' });
+  expect(currentState).toEqual({ foo: "a", bar: "z", qux: "f" });
 });
 
-it('should set new state by applying patch with both new and old keys', () => {
-  const { result } = setUp({ foo: 'a', bar: 'z' });
+it("should set new state by applying patch with both new and old keys", () => {
+  const { result } = setUp({ foo: "a", bar: "z" });
   const [get, set] = result.current;
 
-  act(() => set({ bar: 'y', qux: 'f' }));
+  act(() => set({ bar: "y", qux: "f" }));
 
   const currentState = get();
-  expect(currentState).toEqual({ foo: 'a', bar: 'y', qux: 'f' });
+  expect(currentState).toEqual({ foo: "a", bar: "y", qux: "f" });
 });
 
-it('should NOT set new state if empty patch received', () => {
-  const { result } = setUp({ foo: 'a', bar: 'z' });
+it("should NOT set new state if empty patch received", () => {
+  const { result } = setUp({ foo: "a", bar: "z" });
   const [get, set] = result.current;
 
   act(() => set({}));
 
   const currentState = get();
-  expect(currentState).toEqual({ foo: 'a', bar: 'z' });
+  expect(currentState).toEqual({ foo: "a", bar: "z" });
 });
 
-it('should NOT set new state if no patch received', () => {
-  const { result } = setUp({ foo: 'a', bar: 'z' });
+it("should NOT set new state if no patch received", () => {
+  const { result } = setUp({ foo: "a", bar: "z" });
   const [get, set] = result.current;
 
   // @ts-ignore
   act(() => set());
 
   const currentState = get();
-  expect(currentState).toEqual({ foo: 'a', bar: 'z' });
+  expect(currentState).toEqual({ foo: "a", bar: "z" });
 });
 
-it('should log an error if set with a patch different than an object', () => {
-  const { result } = setUp({ foo: 'a', bar: 'z' });
+it("should log an error if set with a patch different than an object", () => {
+  const { result } = setUp({ foo: "a", bar: "z" });
   const [, set] = result.current;
   expect(mockConsoleError).not.toHaveBeenCalled();
 
-  act(() => set('not an object' as any));
+  act(() => set("not an object" as any));
 
   expect(mockConsoleError).toHaveBeenCalledTimes(1);
-  expect(mockConsoleError).toHaveBeenCalledWith('useGetSetState setter patch must be an object.');
+  expect(mockConsoleError).toHaveBeenCalledWith("useGetSetState setter patch must be an object.");
 });
 
 /**
  * This test is equivalent to demo one for `useGetSet` hook.
  */
-it('should get and set expected state when used in nested functions', () => {
+it("should get and set expected state when used in nested functions", () => {
   const onClick = jest.fn(() => {
     setTimeout(() => {
       set({ counter: get().counter + 1 });

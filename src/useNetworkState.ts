@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
-import { isNavigator, off, on } from './misc/util';
-import { IHookStateInitAction } from './misc/hookState';
+import { useEffect, useState } from "react";
+import { isNavigator, off, on } from "./misc/util";
+import { IHookStateInitAction } from "./misc/hookState";
 
 export interface INetworkInformation extends EventTarget {
   readonly downlink: number;
   readonly downlinkMax: number;
-  readonly effectiveType: 'slow-2g' | '2g' | '3g' | '4g';
+  readonly effectiveType: "slow-2g" | "2g" | "3g" | "4g";
   readonly rtt: number;
   readonly saveData: boolean;
   readonly type:
-    | 'bluetooth'
-    | 'cellular'
-    | 'ethernet'
-    | 'none'
-    | 'wifi'
-    | 'wimax'
-    | 'other'
-    | 'unknown';
+    | "bluetooth"
+    | "cellular"
+    | "ethernet"
+    | "none"
+    | "wifi"
+    | "wimax"
+    | "other"
+    | "unknown";
 
   onChange: (event: Event) => void;
 }
@@ -39,27 +39,27 @@ export interface IUseNetworkState {
    * @desc Effective bandwidth estimate in megabits per second, rounded to the
    * nearest multiple of 25 kilobits per seconds.
    */
-  downlink: INetworkInformation['downlink'] | undefined;
+  downlink: INetworkInformation["downlink"] | undefined;
   /**
    * @desc Maximum downlink speed, in megabits per second (Mbps), for the
    * underlying connection technology
    */
-  downlinkMax: INetworkInformation['downlinkMax'] | undefined;
+  downlinkMax: INetworkInformation["downlinkMax"] | undefined;
   /**
    * @desc Effective type of the connection meaning one of 'slow-2g', '2g', '3g', or '4g'.
    * This value is determined using a combination of recently observed round-trip time
    * and downlink values.
    */
-  effectiveType: INetworkInformation['effectiveType'] | undefined;
+  effectiveType: INetworkInformation["effectiveType"] | undefined;
   /**
    * @desc Estimated effective round-trip time of the current connection, rounded
    * to the nearest multiple of 25 milliseconds
    */
-  rtt: INetworkInformation['rtt'] | undefined;
+  rtt: INetworkInformation["rtt"] | undefined;
   /**
    * @desc {true} if the user has set a reduced data usage option on the user agent.
    */
-  saveData: INetworkInformation['saveData'] | undefined;
+  saveData: INetworkInformation["saveData"] | undefined;
   /**
    * @desc The type of connection a device is using to communicate with the network.
    * It will be one of the following values:
@@ -72,12 +72,12 @@ export interface IUseNetworkState {
    *  - other
    *  - unknown
    */
-  type: INetworkInformation['type'] | undefined;
+  type: INetworkInformation["type"] | undefined;
 }
 
 const nav:
   | (Navigator &
-      Partial<Record<'connection' | 'mozConnection' | 'webkitConnection', INetworkInformation>>)
+      Partial<Record<"connection" | "mozConnection" | "webkitConnection", INetworkInformation>>)
   | undefined = isNavigator ? navigator : undefined;
 const conn: INetworkInformation | undefined =
   nav && (nav.connection || nav.mozConnection || nav.webkitConnection);
@@ -109,19 +109,19 @@ export default function useNetworkState(
       setState(getConnectionState);
     };
 
-    on(window, 'online', handleStateChange, { passive: true });
-    on(window, 'offline', handleStateChange, { passive: true });
+    on(window, "online", handleStateChange, { passive: true });
+    on(window, "offline", handleStateChange, { passive: true });
 
     if (conn) {
-      on(conn, 'change', handleStateChange, { passive: true });
+      on(conn, "change", handleStateChange, { passive: true });
     }
 
     return () => {
-      off(window, 'online', handleStateChange);
-      off(window, 'offline', handleStateChange);
+      off(window, "online", handleStateChange);
+      off(window, "offline", handleStateChange);
 
       if (conn) {
-        off(conn, 'change', handleStateChange);
+        off(conn, "change", handleStateChange);
       }
     };
   }, []);

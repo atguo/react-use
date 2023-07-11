@@ -1,23 +1,23 @@
-import { act, renderHook } from '@testing-library/react-hooks';
-import useToggle from '../src/useToggle';
+import { act, renderHook } from "@testing-library/react-hooks";
+import useToggle from "../src/useToggle";
 
 const setUp = (initialValue: boolean) => renderHook(() => useToggle(initialValue));
 
-it('should init state to true', () => {
+it("should init state to true", () => {
   const { result } = setUp(true);
 
   expect(result.current[0]).toBe(true);
-  expect(typeof result.current[1]).toBe('function');
+  expect(typeof result.current[1]).toBe("function");
 });
 
-it('should init state to false', () => {
+it("should init state to false", () => {
   const { result } = setUp(false);
 
   expect(result.current[0]).toBe(false);
   expect(result.current[1]).toBeInstanceOf(Function);
 });
 
-it('should set state to true', () => {
+it("should set state to true", () => {
   const { result } = setUp(false);
   const [, toggle] = result.current;
 
@@ -30,7 +30,7 @@ it('should set state to true', () => {
   expect(result.current[0]).toBe(true);
 });
 
-it('should set state to false', () => {
+it("should set state to false", () => {
   const { result } = setUp(true);
   const [, toggle] = result.current;
 
@@ -43,7 +43,7 @@ it('should set state to false', () => {
   expect(result.current[0]).toBe(false);
 });
 
-it('should toggle state from true', () => {
+it("should toggle state from true", () => {
   const { result } = setUp(true);
   const [, toggle] = result.current;
 
@@ -54,7 +54,7 @@ it('should toggle state from true', () => {
   expect(result.current[0]).toBe(false);
 });
 
-it('should toggle state from false', () => {
+it("should toggle state from false", () => {
   const { result } = setUp(false);
   const [, toggle] = result.current;
 
@@ -65,12 +65,12 @@ it('should toggle state from false', () => {
   expect(result.current[0]).toBe(true);
 });
 
-it('should ignore non-boolean parameters and toggle state', () => {
+it("should ignore non-boolean parameters and toggle state", () => {
   const { result } = setUp(true);
   const [, toggle] = result.current;
 
   act(() => {
-    toggle('string');
+    toggle("string");
   });
 
   expect(result.current[0]).toBe(false);

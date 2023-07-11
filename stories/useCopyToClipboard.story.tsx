@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useCopyToClipboard } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useCopyToClipboard } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState("");
   const [state, copyToClipboard] = useCopyToClipboard();
 
   return (
@@ -19,7 +19,7 @@ const Demo = () => {
         state.value && (
           <>
             <p>
-              Copied {state.value} {state.noUserInteraction ? 'without' : 'with'} user interaction
+              Copied {state.value} {state.noUserInteraction ? "without" : "with"} user interaction
             </p>
             <input type="text" placeholder="Paste it in here to check" />
           </>
@@ -29,6 +29,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Side-effects/useCopyToClipboard', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useCopyToClipboard.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Side-effects/useCopyToClipboard", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useCopyToClipboard.md")} />)
+  .add("Demo", () => <Demo />);

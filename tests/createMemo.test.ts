@@ -1,15 +1,15 @@
-import { renderHook } from '@testing-library/react-hooks';
-import createMemo from '../src/factory/createMemo';
+import { renderHook } from "@testing-library/react-hooks";
+import createMemo from "../src/factory/createMemo";
 
 const getDouble = jest.fn((n: number): number => n * 2);
 
-it('should init memo hook', () => {
+it("should init memo hook", () => {
   const useMemoGetDouble = createMemo(getDouble);
 
   expect(useMemoGetDouble).toBeInstanceOf(Function);
 });
 
-describe('when using created memo hook', () => {
+describe("when using created memo hook", () => {
   let useMemoGetDouble;
 
   beforeEach(() => {
@@ -17,14 +17,14 @@ describe('when using created memo hook', () => {
   });
 
   it.each([[1], [3], [5]])(
-    'should return same result as original function for argument %d',
+    "should return same result as original function for argument %d",
     (val: number) => {
       const { result } = renderHook(() => useMemoGetDouble(val));
       expect(result.current).toBe(getDouble(val));
     }
   );
 
-  it('should NOT call original function for same arguments', () => {
+  it("should NOT call original function for same arguments", () => {
     let initialValue = 5;
     expect(getDouble).not.toHaveBeenCalled();
 

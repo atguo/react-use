@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { noop } from './misc/util';
+import * as React from "react";
+import { noop } from "./misc/util";
 
 const { useState } = React;
 
@@ -17,7 +17,7 @@ const useHover = (element: Element): [React.ReactElement<any>, boolean] => {
     setState(false);
   };
 
-  if (typeof element === 'function') {
+  if (typeof element === "function") {
     element = element(state);
   }
 

@@ -1,6 +1,6 @@
-import { useCallback, useState } from 'react';
-import useLifecycles from './useLifecycles';
-import { off, on } from './misc/util';
+import { useCallback, useState } from "react";
+import useLifecycles from "./useLifecycles";
+import { off, on } from "./misc/util";
 
 /**
  * read and write url hash, response to url hash change
@@ -14,10 +14,10 @@ export const useHash = () => {
 
   useLifecycles(
     () => {
-      on(window, 'hashchange', onHashChange);
+      on(window, "hashchange", onHashChange);
     },
     () => {
-      off(window, 'hashchange', onHashChange);
+      off(window, "hashchange", onHashChange);
     }
   );
 

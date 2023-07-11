@@ -1,6 +1,6 @@
-import { renderHook } from '@testing-library/react-hooks';
-import { replaceRaf } from 'raf-stub';
-import useRafLoop from '../src/useRafLoop';
+import { renderHook } from "@testing-library/react-hooks";
+import { replaceRaf } from "raf-stub";
+import useRafLoop from "../src/useRafLoop";
 
 declare var requestAnimationFrame: {
   add: (cb: Function) => number;
@@ -10,7 +10,7 @@ declare var requestAnimationFrame: {
   step: (steps?: number, duration?: number) => void;
 };
 
-describe('useRafLoop', () => {
+describe("useRafLoop", () => {
   beforeAll(() => {
     replaceRaf();
   });
@@ -19,11 +19,11 @@ describe('useRafLoop', () => {
     requestAnimationFrame.reset();
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(useRafLoop).toBeDefined();
   });
 
-  it('should return object with start, stop and isActive functions', () => {
+  it("should return object with start, stop and isActive functions", () => {
     const hook = renderHook(() => useRafLoop(() => false), { initialProps: false });
 
     expect(hook.result.current).toStrictEqual([
@@ -33,7 +33,7 @@ describe('useRafLoop', () => {
     ]);
   });
 
-  it('should constantly call callback inside the raf loop', () => {
+  it("should constantly call callback inside the raf loop", () => {
     const spy = jest.fn();
     renderHook(() => useRafLoop(spy), { initialProps: false });
 
@@ -44,7 +44,7 @@ describe('useRafLoop', () => {
     expect(spy).toBeCalledTimes(4);
   });
 
-  it('should not start the loop if 2nd hook parameter is falsy', () => {
+  it("should not start the loop if 2nd hook parameter is falsy", () => {
     const spy = jest.fn();
     renderHook(() => useRafLoop(spy, false), { initialProps: false });
 
@@ -53,16 +53,16 @@ describe('useRafLoop', () => {
     expect(spy).not.toBeCalled();
   });
 
-  it('should pass the time argument to given callback', () => {
+  it("should pass the time argument to given callback", () => {
     const spy = jest.fn();
     renderHook(() => useRafLoop(spy), { initialProps: false });
 
     expect(spy).not.toBeCalled();
     requestAnimationFrame.step();
-    expect(typeof spy.mock.calls[0][0]).toBe('number');
+    expect(typeof spy.mock.calls[0][0]).toBe("number");
   });
 
-  it('should stop the loop on component unmount', () => {
+  it("should stop the loop on component unmount", () => {
     const spy = jest.fn();
     const hook = renderHook(() => useRafLoop(spy), { initialProps: false });
 
@@ -76,7 +76,7 @@ describe('useRafLoop', () => {
     expect(spy).toBeCalledTimes(2);
   });
 
-  it('should call the actual callback when it changed', () => {
+  it("should call the actual callback when it changed", () => {
     const spy1 = jest.fn();
     const spy2 = jest.fn();
     const hook = renderHook(({ cb }) => useRafLoop(cb), { initialProps: { cb: spy1 } });
@@ -92,8 +92,8 @@ describe('useRafLoop', () => {
     expect(spy2).toBeCalledTimes(2);
   });
 
-  describe('returned methods', () => {
-    it('stop method should stop the loop', () => {
+  describe("returned methods", () => {
+    it("stop method should stop the loop", () => {
       const spy = jest.fn();
       const hook = renderHook(() => useRafLoop(spy), { initialProps: false });
 
@@ -109,7 +109,7 @@ describe('useRafLoop', () => {
       expect(spy).toBeCalledTimes(2);
     });
 
-    it('start method should start stopped loop', () => {
+    it("start method should start stopped loop", () => {
       const spy = jest.fn();
       const hook = renderHook(() => useRafLoop(spy, false), { initialProps: false });
 
@@ -135,7 +135,7 @@ describe('useRafLoop', () => {
       expect(spy).toBeCalledTimes(4);
     });
 
-    it('isActive method should return current loop state', () => {
+    it("isActive method should return current loop state", () => {
       const spy = jest.fn();
       const hook = renderHook(() => useRafLoop(spy, false), { initialProps: false });
 

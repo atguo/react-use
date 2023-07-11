@@ -1,3 +1,3 @@
-import useBoolean from './useToggle';
+import useBoolean from "./useToggle";
 
 export default useBoolean;

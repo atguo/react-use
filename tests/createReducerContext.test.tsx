@@ -1,33 +1,33 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { act, renderHook } from '@testing-library/react-hooks';
-import createReducerContext from '../src/factory/createReducerContext';
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react-hooks";
+import createReducerContext from "../src/factory/createReducerContext";
 
-type Action = 'increment' | 'decrement';
+type Action = "increment" | "decrement";
 
 const reducer = (state: number, action: Action) => {
   switch (action) {
-    case 'increment':
+    case "increment":
       return state + 1;
-    case 'decrement':
+    case "decrement":
       return state - 1;
     default:
       throw new Error();
   }
 };
 
-it('should create a hook and a provider', () => {
+it("should create a hook and a provider", () => {
   const [useSharedNumber, SharedNumberProvider] = createReducerContext(reducer, 0);
   expect(useSharedNumber).toBeInstanceOf(Function);
   expect(SharedNumberProvider).toBeInstanceOf(Function);
 });
 
-describe('when using created hook', () => {
-  it('should throw out of a provider', () => {
+describe("when using created hook", () => {
+  it("should throw out of a provider", () => {
     const [useSharedNumber] = createReducerContext(reducer, 0);
     const { result } = renderHook(() => useSharedNumber());
     expect(result.error).toEqual(
-      new Error('useReducerContext must be used inside a ReducerProvider.')
+      new Error("useReducerContext must be used inside a ReducerProvider.")
     );
   });
 
@@ -39,7 +39,7 @@ describe('when using created hook', () => {
     return renderHook(() => useSharedNumber(), { wrapper });
   };
 
-  it('should init state and updater', () => {
+  it("should init state and updater", () => {
     const { result } = setUp();
     const [sharedNumber, updateSharedNumber] = result.current;
 
@@ -47,11 +47,11 @@ describe('when using created hook', () => {
     expect(updateSharedNumber).toBeInstanceOf(Function);
   });
 
-  it('should update the state', () => {
+  it("should update the state", () => {
     const { result } = setUp();
     const [, updateSharedNumber] = result.current;
 
-    act(() => updateSharedNumber('increment'));
+    act(() => updateSharedNumber("increment"));
 
     const [sharedNumber] = result.current;
 
@@ -59,7 +59,7 @@ describe('when using created hook', () => {
   });
 });
 
-describe('when using among multiple components', () => {
+describe("when using among multiple components", () => {
   const [useSharedNumber, SharedNumberProvider] = createReducerContext(reducer, 0);
 
   const DisplayComponent = () => {
@@ -70,13 +70,13 @@ describe('when using among multiple components', () => {
   const UpdateComponent = () => {
     const [, updateSharedNumber] = useSharedNumber();
     return (
-      <button type="button" onClick={() => updateSharedNumber('increment')}>
+      <button type="button" onClick={() => updateSharedNumber("increment")}>
         INCREMENT
       </button>
     );
   };
 
-  it('should be in sync when under the same provider', () => {
+  it("should be in sync when under the same provider", () => {
     const { baseElement, getByText } = render(
       <SharedNumberProvider>
         <DisplayComponent />
@@ -89,14 +89,14 @@ describe('when using among multiple components', () => {
       '<div><p>0</p><p>0</p><button type="button">INCREMENT</button></div>'
     );
 
-    fireEvent.click(getByText('INCREMENT'));
+    fireEvent.click(getByText("INCREMENT"));
 
     expect(baseElement.innerHTML).toBe(
       '<div><p>1</p><p>1</p><button type="button">INCREMENT</button></div>'
     );
   });
 
-  it('should be in update independently when under different providers', () => {
+  it("should be in update independently when under different providers", () => {
     const { baseElement, getByText } = render(
       <>
         <SharedNumberProvider>
@@ -113,14 +113,14 @@ describe('when using among multiple components', () => {
       '<div><p>0</p><p>0</p><button type="button">INCREMENT</button></div>'
     );
 
-    fireEvent.click(getByText('INCREMENT'));
+    fireEvent.click(getByText("INCREMENT"));
 
     expect(baseElement.innerHTML).toBe(
       '<div><p>0</p><p>1</p><button type="button">INCREMENT</button></div>'
     );
   });
 
-  it('should not update component that do not use the state context', () => {
+  it("should not update component that do not use the state context", () => {
     let renderCount = 0;
     const StaticComponent = () => {
       renderCount++;
@@ -141,7 +141,7 @@ describe('when using among multiple components', () => {
       '<div><p>static</p><p>0</p><button type="button">INCREMENT</button></div>'
     );
 
-    fireEvent.click(getByText('INCREMENT'));
+    fireEvent.click(getByText("INCREMENT"));
 
     expect(baseElement.innerHTML).toBe(
       '<div><p>static</p><p>1</p><button type="button">INCREMENT</button></div>'
@@ -150,7 +150,7 @@ describe('when using among multiple components', () => {
     expect(renderCount).toBe(1);
   });
 
-  it('should override initialValue', () => {
+  it("should override initialValue", () => {
     const { baseElement } = render(
       <>
         <SharedNumberProvider>
@@ -162,6 +162,6 @@ describe('when using among multiple components', () => {
       </>
     );
 
-    expect(baseElement.innerHTML).toBe('<div><p>0</p><p>15</p></div>');
+    expect(baseElement.innerHTML).toBe("<div><p>0</p><p>15</p></div>");
   });
 });

@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
-import Cookies from 'js-cookie';
+import { useCallback, useState } from "react";
+import Cookies from "js-cookie";
 
 const useCookie = (
   cookieName: string

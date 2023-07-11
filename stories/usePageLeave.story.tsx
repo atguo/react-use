@@ -1,11 +1,11 @@
-import { action } from '@storybook/addon-actions';
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { usePageLeave } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { usePageLeave } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
-  usePageLeave(action('onPageLeave'));
+  usePageLeave(action("onPageLeave"));
 
   return (
     <div>
@@ -14,6 +14,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Sensors/usePageLeave', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/usePageLeave.md')} />)
-  .add('Default', () => <Demo />);
+storiesOf("Sensors/usePageLeave", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/usePageLeave.md")} />)
+  .add("Default", () => <Demo />);

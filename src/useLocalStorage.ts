@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useCallback, useState, useRef, useLayoutEffect } from 'react';
-import { isBrowser, noop } from './misc/util';
+import { Dispatch, SetStateAction, useCallback, useState, useRef, useLayoutEffect } from "react";
+import { isBrowser, noop } from "./misc/util";
 
 type parserOptions<T> =
   | {
@@ -20,7 +20,7 @@ const useLocalStorage = <T>(
     return [initialValue as T, noop, noop];
   }
   if (!key) {
-    throw new Error('useLocalStorage key may not be falsy');
+    throw new Error("useLocalStorage key may not be falsy");
   }
 
   const deserializer = options
@@ -60,13 +60,13 @@ const useLocalStorage = <T>(
     (valOrFunc) => {
       try {
         const newState =
-          typeof valOrFunc === 'function' ? (valOrFunc as Function)(state) : valOrFunc;
-        if (typeof newState === 'undefined') return;
+          typeof valOrFunc === "function" ? (valOrFunc as Function)(state) : valOrFunc;
+        if (typeof newState === "undefined") return;
         let value: string;
 
         if (options)
           if (options.raw)
-            if (typeof newState === 'string') value = newState;
+            if (typeof newState === "string") value = newState;
             else value = JSON.stringify(newState);
           else if (options.serializer) value = options.serializer(newState);
           else value = JSON.stringify(newState);

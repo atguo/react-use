@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useMultiStateValidator } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useMultiStateValidator } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const DemoStateValidator = (s: number[]) => [s.every((num: number) => !(num % 2))] as [boolean];
 const Demo = () => {
@@ -42,12 +42,12 @@ const Demo = () => {
         }}
       />
       {isValid !== undefined && (
-        <span style={{ marginLeft: 24 }}>{isValid ? 'Valid!' : 'Invalid'}</span>
+        <span style={{ marginLeft: 24 }}>{isValid ? "Valid!" : "Invalid"}</span>
       )}
     </div>
   );
 };
 
-storiesOf('State/useMultiStateValidator', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useMultiStateValidator.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/useMultiStateValidator", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useMultiStateValidator.md")} />)
+  .add("Demo", () => <Demo />);

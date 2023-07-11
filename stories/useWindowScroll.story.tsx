@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useWindowScroll } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useWindowScroll } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const { x, y } = useWindowScroll();
@@ -9,12 +9,12 @@ const Demo = () => {
   return (
     <div
       style={{
-        width: '200vw',
-        height: '200vh',
+        width: "200vw",
+        height: "200vh",
       }}>
       <div
         style={{
-          position: 'fixed',
+          position: "fixed",
           left: 0,
           right: 0,
         }}>
@@ -25,6 +25,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Sensors/useWindowScroll', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useWindowScroll.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Sensors/useWindowScroll", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useWindowScroll.md")} />)
+  .add("Demo", () => <Demo />);

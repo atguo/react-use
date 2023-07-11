@@ -1,21 +1,21 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useScratch } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useScratch } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [ref, state] = useScratch();
 
   const blockStyle: React.CSSProperties = {
-    position: 'relative',
+    position: "relative",
     width: 400,
     height: 400,
-    border: '1px solid tomato',
+    border: "1px solid tomato",
   };
 
   const preStyle: React.CSSProperties = {
-    pointerEvents: 'none',
-    userSelect: 'none',
+    pointerEvents: "none",
+    userSelect: "none",
   };
 
   let { x = 0, y = 0, dx = 0, dy = 0 } = state;
@@ -23,14 +23,14 @@ const Demo = () => {
   if (dy < 0) [y, dy] = [y + dy, -dy];
 
   const rectangleStyle: React.CSSProperties = {
-    position: 'absolute',
+    position: "absolute",
     left: x,
     top: y,
     width: dx,
     height: dy,
-    border: '1px solid tomato',
-    pointerEvents: 'none',
-    userSelect: 'none',
+    border: "1px solid tomato",
+    pointerEvents: "none",
+    userSelect: "none",
   };
 
   return (
@@ -41,6 +41,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Sensors/useScratch', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useScratch.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Sensors/useScratch", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useScratch.md")} />)
+  .add("Demo", () => <Demo />);

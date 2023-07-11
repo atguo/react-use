@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useCallback, useRef } from 'react';
-import { useCounter, useStateWithHistory } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useCallback, useRef } from "react";
+import { useCounter, useStateWithHistory } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
-  const [state, setState, history] = useStateWithHistory('', 10, ['hello', 'world']);
+  const [state, setState, history] = useStateWithHistory("", 10, ["hello", "world"]);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [stepSize, { set: setStepSize }] = useCounter(1, 3, 1);
@@ -50,7 +50,7 @@ const Demo = () => {
   return (
     <div>
       <div>
-        <form onSubmit={handleFormSubmit} style={{ display: 'inline-block' }}>
+        <form onSubmit={handleFormSubmit} style={{ display: "inline-block" }}>
           <input type="text" ref={inputRef} />
           <button>Submit new state</button>
         </form>
@@ -77,8 +77,8 @@ const Demo = () => {
         <div
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(window.history.history, null, 2)
-              .replace(/\n/g, '<br/>')
-              .replace(/ /g, '&nbsp;'),
+              .replace(/\n/g, "<br/>")
+              .replace(/ /g, "&nbsp;"),
           }}
         />
       </div>
@@ -86,6 +86,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('State/useStateWithHistory', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useStateWithHistory.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/useStateWithHistory", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useStateWithHistory.md")} />)
+  .add("Demo", () => <Demo />);

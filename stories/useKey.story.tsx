@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useKey } from '../src';
-import { CenterStory } from './util/CenterStory';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useKey } from "../src";
+import { CenterStory } from "./util/CenterStory";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const [count, setCount] = React.useState(0);
@@ -11,9 +11,9 @@ const Demo = () => {
   const decrement = () => setCount((currentCount) => --currentCount);
   const reset = () => setCount(() => 0);
 
-  useKey(']', increment);
-  useKey('[', decrement);
-  useKey('r', reset);
+  useKey("]", increment);
+  useKey("[", decrement);
+  useKey("r", reset);
 
   return (
     <CenterStory>
@@ -30,12 +30,12 @@ const Demo = () => {
 const CounterDemo = () => {
   const [count, setCount] = React.useState(0);
   const increment = () => setCount((currentCount) => ++currentCount);
-  useKey('ArrowUp', increment);
+  useKey("ArrowUp", increment);
 
   return <div>Press arrow up: {count}</div>;
 };
 
-storiesOf('Sensors/useKey', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useKey.md')} />)
-  .add('Demo', () => <Demo />)
-  .add('Simple counter', () => <CounterDemo />);
+storiesOf("Sensors/useKey", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useKey.md")} />)
+  .add("Demo", () => <Demo />)
+  .add("Simple counter", () => <CounterDemo />);

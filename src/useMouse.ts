@@ -1,7 +1,7 @@
-import { RefObject, useEffect } from 'react';
+import { RefObject, useEffect } from "react";
 
-import useRafState from './useRafState';
-import { off, on } from './misc/util';
+import useRafState from "./useRafState";
+import { off, on } from "./misc/util";
 
 export interface State {
   docX: number;
@@ -15,9 +15,9 @@ export interface State {
 }
 
 const useMouse = (ref: RefObject<Element>): State => {
-  if (process.env.NODE_ENV === 'development') {
-    if (typeof ref !== 'object' || typeof ref.current === 'undefined') {
-      console.error('useMouse expects a single ref argument.');
+  if (process.env.NODE_ENV === "development") {
+    if (typeof ref !== "object" || typeof ref.current === "undefined") {
+      console.error("useMouse expects a single ref argument.");
     }
   }
 
@@ -54,10 +54,10 @@ const useMouse = (ref: RefObject<Element>): State => {
       }
     };
 
-    on(document, 'mousemove', moveHandler);
+    on(document, "mousemove", moveHandler);
 
     return () => {
-      off(document, 'mousemove', moveHandler);
+      off(document, "mousemove", moveHandler);
     };
   }, [ref]);
 

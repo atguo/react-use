@@ -1,5 +1,5 @@
-import { useMemo, useRef } from 'react';
-import useEffectOnce from './useEffectOnce';
+import { useMemo, useRef } from "react";
+import useEffectOnce from "./useEffectOnce";
 
 export type Race = <P extends Promise<any>, E = any>(promise: P, onError?: (error: E) => void) => P;
 
@@ -19,7 +19,7 @@ const useUnmountPromise = (): Race => {
           (error) => {
             if (!refUnmounted.current) reject(error);
             else if (onError) onError(error);
-            else console.error('useUnmountPromise', error);
+            else console.error("useUnmountPromise", error);
           }
         );
       }) as P;

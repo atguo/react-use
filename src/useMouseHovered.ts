@@ -1,6 +1,6 @@
-import { RefObject } from 'react';
-import useHoverDirty from './useHoverDirty';
-import useMouse, { State } from './useMouse';
+import { RefObject } from "react";
+import useHoverDirty from "./useHoverDirty";
+import useMouse, { State } from "./useMouse";
 
 export interface UseMouseHoveredOptions {
   whenHovered?: boolean;

@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useRef } from 'react';
-import { useStateList } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useRef } from "react";
+import { useStateList } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
-const stateSet = ['first', 'second', 'third', 'fourth', 'fifth'];
+const stateSet = ["first", "second", "third", "fourth", "fifth"];
 
 const Demo = () => {
   const { state, prev, next, setStateAt, setState, currentIndex } = useStateList(stateSet);
@@ -31,6 +31,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('State/useStateList', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useStateList.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("State/useStateList", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useStateList.md")} />)
+  .add("Demo", () => <Demo />);

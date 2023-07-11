@@ -1,8 +1,8 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useEffect } from 'react';
-import { useNetworkState } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useEffect } from "react";
+import { useNetworkState } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const state = useNetworkState();
@@ -19,6 +19,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Sensors/useNetworkState', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useNetworkState.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Sensors/useNetworkState", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useNetworkState.md")} />)
+  .add("Demo", () => <Demo />);

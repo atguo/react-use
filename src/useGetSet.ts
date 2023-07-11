@@ -1,6 +1,6 @@
-import { Dispatch, useMemo, useRef } from 'react';
-import useUpdate from './useUpdate';
-import { IHookStateInitAction, IHookStateSetAction, resolveHookState } from './misc/hookState';
+import { Dispatch, useMemo, useRef } from "react";
+import useUpdate from "./useUpdate";
+import { IHookStateInitAction, IHookStateSetAction, resolveHookState } from "./misc/hookState";
 
 export default function useGetSet<S>(
   initialState: IHookStateInitAction<S>

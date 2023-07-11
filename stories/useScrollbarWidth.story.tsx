@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import * as React from 'react';
-import { useScrollbarWidth } from '../src';
-import ShowDocs from './util/ShowDocs';
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { useScrollbarWidth } from "../src";
+import ShowDocs from "./util/ShowDocs";
 
 const Demo = () => {
   const sbw = useScrollbarWidth();
@@ -15,6 +15,6 @@ const Demo = () => {
   );
 };
 
-storiesOf('Sensors/useScrollbarWidth', module)
-  .add('Docs', () => <ShowDocs md={require('../docs/useScroll.md')} />)
-  .add('Demo', () => <Demo />);
+storiesOf("Sensors/useScrollbarWidth", module)
+  .add("Docs", () => <ShowDocs md={require("../docs/useScroll.md")} />)
+  .add("Demo", () => <Demo />);

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { isBrowser, off, on } from './misc/util';
+import { useEffect } from "react";
+import { isBrowser, off, on } from "./misc/util";
 
 export interface ListenerType1 {
   addEventListener(name: string, handler: (event?: any) => void, ...args: any[]);
@@ -25,9 +25,9 @@ const isListenerType2 = (target: any): target is ListenerType2 => {
 };
 
 type AddEventListener<T> = T extends ListenerType1
-  ? T['addEventListener']
+  ? T["addEventListener"]
   : T extends ListenerType2
-  ? T['on']
+  ? T["on"]
   : never;
 
 export type UseEventOptions<T> = Parameters<AddEventListener<T>>[2];

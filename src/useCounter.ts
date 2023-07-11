@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
-import useGetSet from './useGetSet';
-import { IHookStateInitAction, IHookStateSetAction, resolveHookState } from './misc/hookState';
+import { useMemo } from "react";
+import useGetSet from "./useGetSet";
+import { IHookStateInitAction, IHookStateSetAction, resolveHookState } from "./misc/hookState";
 
 export interface CounterActions {
   inc: (delta?: number) => void;
@@ -17,19 +17,19 @@ export default function useCounter(
 ): [number, CounterActions] {
   let init = resolveHookState(initialValue);
 
-  typeof init !== 'number' &&
-    console.error('initialValue has to be a number, got ' + typeof initialValue);
+  typeof init !== "number" &&
+    console.error("initialValue has to be a number, got " + typeof initialValue);
 
-  if (typeof min === 'number') {
+  if (typeof min === "number") {
     init = Math.max(init, min);
   } else if (min !== null) {
-    console.error('min has to be a number, got ' + typeof min);
+    console.error("min has to be a number, got " + typeof min);
   }
 
-  if (typeof max === 'number') {
+  if (typeof max === "number") {
     init = Math.min(init, max);
   } else if (max !== null) {
-    console.error('max has to be a number, got ' + typeof max);
+    console.error("max has to be a number, got " + typeof max);
   }
 
   const [get, setInternal] = useGetSet(init);
@@ -42,10 +42,10 @@ export default function useCounter(
         let rState = resolveHookState(newState, prevState);
 
         if (prevState !== rState) {
-          if (typeof min === 'number') {
+          if (typeof min === "number") {
             rState = Math.max(rState, min);
           }
-          if (typeof max === 'number') {
+          if (typeof max === "number") {
             rState = Math.min(rState, max);
           }
 
@@ -59,9 +59,9 @@ export default function useCounter(
         inc: (delta: IHookStateSetAction<number> = 1) => {
           const rDelta = resolveHookState(delta, get());
 
-          if (typeof rDelta !== 'number') {
+          if (typeof rDelta !== "number") {
             console.error(
-              'delta has to be a number or function returning a number, got ' + typeof rDelta
+              "delta has to be a number or function returning a number, got " + typeof rDelta
             );
           }
 
@@ -70,9 +70,9 @@ export default function useCounter(
         dec: (delta: IHookStateSetAction<number> = 1) => {
           const rDelta = resolveHookState(delta, get());
 
-          if (typeof rDelta !== 'number') {
+          if (typeof rDelta !== "number") {
             console.error(
-              'delta has to be a number or function returning a number, got ' + typeof rDelta
+              "delta has to be a number or function returning a number, got " + typeof rDelta
             );
           }
 
@@ -81,9 +81,9 @@ export default function useCounter(
         reset: (value: IHookStateSetAction<number> = init) => {
           const rValue = resolveHookState(value, get());
 
-          if (typeof rValue !== 'number') {
+          if (typeof rValue !== "number") {
             console.error(
-              'value has to be a number or function returning a number, got ' + typeof rValue
+              "value has to be a number or function returning a number, got " + typeof rValue
             );
           }
 

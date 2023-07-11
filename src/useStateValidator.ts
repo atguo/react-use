@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
 
 export type ValidityState = [boolean | undefined, ...any[]] | [undefined];
 
